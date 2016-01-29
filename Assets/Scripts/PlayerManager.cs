@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerManager : MonoBehaviour {
 
     public static PlayerManager instance;
+    public const int MAX_PLAYERS = 4;
 
     private List<int> players = new List<int>();
     public int NumberOfPlayers { get { return players.Count; } }
@@ -35,6 +36,9 @@ public class PlayerManager : MonoBehaviour {
 
     public void AddPlayer(int controller)
     {
+        if( NumberOfPlayers == MAX_PLAYERS )
+            return;
+
         if( !players.Contains(controller) )
             players.Add(controller);
     }
