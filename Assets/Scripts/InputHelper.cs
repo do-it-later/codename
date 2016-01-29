@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputManager : MonoBehaviour {
+public class InputHelper : MonoBehaviour {
 
-    public static InputManager instance;
+    public static InputHelper instance;
 
     #if UNITY_STANDALONE_WIN
     public enum Button
@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour {
     public string GetInputButtonString(int controller, Button button)
     {
         int buttonNum = (int)button;
-        return "joystick " + controller.ToString() + " button " +   buttonNum.ToString();
+        return "joystick " + controller.ToString() + " button " + buttonNum.ToString();
     }
 
     public float GetAngle(int controller)

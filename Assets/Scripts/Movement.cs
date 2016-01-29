@@ -17,12 +17,12 @@ public class Movement : MonoBehaviour {
         pos.x += 0.02f;
         gameObject.transform.position = pos;
 
-        if( Input.GetKeyDown( InputManager.instance.GetInputButtonString(playerNumber, InputManager.Button.A) ) && inControl )
+        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.A) ) && inControl )
         {
             ObjectPool.instance.GetObject("P" + playerNumber.ToString() + " Ball", true);
             inControl = false;
         }
-        Debug.Log(InputManager.instance.GetAngle(playerNumber));
+        Debug.Log(InputHelper.instance.GetAngle(playerNumber));
 	}
 
     void OnBecameInvisible()
