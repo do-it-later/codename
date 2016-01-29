@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bear : MonoBehaviour
+public class BearHead : MonoBehaviour
 {
 	public float angle;
 	public float shootVelocity;
