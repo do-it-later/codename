@@ -5,13 +5,14 @@ public class InputHelper : MonoBehaviour {
 
     public static InputHelper instance;
 
-    #if UNITY_STANDALONE_WIN
+    #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX
     public enum Button
     {
         A = 0,
         B = 1,
         X = 2,
-        Y = 3
+        Y = 3,
+        START = 7
     }
     #elif UNITY_STANDALONE_OSX
     public enum Button
@@ -19,7 +20,8 @@ public class InputHelper : MonoBehaviour {
         A = 16,
         B = 17,
         X = 18,
-        Y = 19
+        Y = 19,
+        START = 9
     }
     #endif
 

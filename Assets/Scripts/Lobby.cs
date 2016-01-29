@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviour {
 
@@ -7,11 +8,6 @@ public class Lobby : MonoBehaviour {
     private bool p2added = false;
     private bool p3added = false;
     private bool p4added = false;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +46,11 @@ public class Lobby : MonoBehaviour {
                 PlayerManager.instance.AddPlayer(4);
 
             p4added = !p4added;
+        }
+
+        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.START) ) )
+        {
+            SceneManager.LoadScene("Test");
         }
 	}
 }

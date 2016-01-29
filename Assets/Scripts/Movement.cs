@@ -8,7 +8,10 @@ public class Movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        if( !PlayerManager.instance.ContainsPlayer(playerNumber) )
+        {
+            gameObject.SetActive(false);
+        }
 	}
 	
 	// Update is called once per frame
