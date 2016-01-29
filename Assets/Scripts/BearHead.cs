@@ -48,7 +48,7 @@ public class BearHead : MonoBehaviour
 			if(transform.position.y <= defaultPosition.y)
 			{
 				transform.position = defaultPosition;
-				transform.Rotate(0, 0, -angle);
+				transform.Rotate(0, 0, -(angle - 90));
 				retracting = false;
 				canShoot = true;
 			}
@@ -59,7 +59,7 @@ public class BearHead : MonoBehaviour
 	{
 		if(canShoot)
 		{
-			transform.Rotate(0, 0, angle);
+			transform.Rotate(0, 0, (angle - 90));
 			extending = true;
 			canShoot = false;
 		}

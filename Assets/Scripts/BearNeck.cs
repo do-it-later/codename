@@ -6,28 +6,35 @@ public class BearNeck : MonoBehaviour
 	public Transform bearHead;
 	public Transform bearBody;
 
-	private float factor = 1.5f;
+	private float factor = 1.4f;
+
+	private Vector3 body;
+	private Vector3 head;
 
 	// Use this for initialization
 	void Start()
 	{
-		SetPos(bearBody.position, bearHead.position);
+		body = new Vector3(bearBody.position.x + 0.9f, bearBody.position.y + 0.5f, bearBody.position.z);
+		head = new Vector3(bearHead.position.x - 0.3f, bearHead.position.y - 0.1f, bearHead.position.z);
+		transform.position = body;
+		SetPos(body, head);
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		SetPos(bearBody.position, bearHead.position);
+		head = new Vector3(bearHead.position.x - 0.3f, bearHead.position.y - 0.1f, bearHead.position.z);
+		SetPos(body, head);
 	}
 
 	void SetPos(Vector3 start, Vector3 end)
 	{
 		var dir = end - start;
-		var mid = (dir) / 2.0f + start;
-		transform.position = mid;
-		transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+//		var mid = (dir) / 2.0f + start;
+//		transform.position = mid;
+		transform.rotation = Quaternion.FromToRotation(bearBody.up, dir);
 		Vector3 scale = transform.localScale;
-		scale.y = dir.magnitude * factor;
+		scale.y = dir.magnitude / 2.0f * factor;
 		transform.localScale = scale;
 	}
 }
