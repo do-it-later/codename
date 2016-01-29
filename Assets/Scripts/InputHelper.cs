@@ -25,7 +25,16 @@ public class InputHelper : MonoBehaviour {
 
     void Awake()
     {
-        instance = this;
+        if( instance == null )
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Debug.Log("Duplicate instance detected, destroying gameObject");
+            Destroy(gameObject);
+        }
     }
 
     public string GetInputButtonString(int controller, Button button)

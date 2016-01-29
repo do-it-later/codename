@@ -14,7 +14,16 @@ public class ObjectPool : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if( instance == null )
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Debug.Log("Duplicate instance detected, destroying gameObject");
+            Destroy(gameObject);
+        }
     }
 
     void Start()
