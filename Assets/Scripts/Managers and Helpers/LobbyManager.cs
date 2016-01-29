@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Lobby : MonoBehaviour {
+public class LobbyManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
