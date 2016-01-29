@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
 
     private List<int> players = new List<int>();
+    public int NumberOfPlayers { get { return players.Count; } }
 
     void Awake()
     {

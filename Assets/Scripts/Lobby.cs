@@ -48,9 +48,20 @@ public class Lobby : MonoBehaviour {
             p4added = !p4added;
         }
 
-        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.START) ) )
+        for(int i = 1; i <= 4; ++i)
         {
-            SceneManager.LoadScene("Test");
+            // must have at least 2 players
+            if( PlayerManager.instance.NumberOfPlayers < 2 )
+                break;
+            
+            // player must be playing
+            if( !PlayerManager.instance.ContainsPlayer(i) )
+                continue;
+            
+            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
+            {
+                SceneManager.LoadScene("Test");
+            }
         }
 	}
 }
