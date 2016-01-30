@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-	public GameObject animation;
+	public GameObject animationObj;
 
 	// Use this for initialization
 	void Start()
@@ -30,10 +30,10 @@ public class MainMenuManager : MonoBehaviour
 
 	IEnumerator PlayAnimation()
 	{
-		animation.GetComponent<Animator>().Play("Start Screen");
+		animationObj.GetComponent<Animator>().Play("Start Screen");
 		yield return 0;
-		yield return new WaitForSeconds(animation.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
-		animation.GetComponent<Animator>().Play("Idle");
+		yield return new WaitForSeconds(animationObj.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
+		animationObj.GetComponent<Animator>().Play("Idle");
 		SceneManager.LoadScene("Lobby");
 	}
 }

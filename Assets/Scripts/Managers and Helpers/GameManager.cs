@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour {
     private bool allEmpty = false;
     public bool gameRunning = false;
 
+    private List<int> bearTurns = new List<int>();
+
     void Awake()
     {
         instance = this;
@@ -38,6 +41,18 @@ public class GameManager : MonoBehaviour {
     {
         timer = GetComponent<Timer>();
         round = 0;
+        bearTurns.Add(1);
+        bearTurns.Add(2);
+        bearTurns.Add(3);
+        bearTurns.Add(4);
+
+        for (int i = 0; i < bearTurns.Count; ++i)
+        {
+            int r = Random.Range(0, bearTurns.Count);
+            int t = bearTurns[r];
+            bearTurns[r] = bearTurns[i];
+            bearTurns[i] = t;
+        }
 
         PrepareNextRound();
     }
@@ -92,7 +107,7 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[round-1];
+        bearPlayer = PlayerManager.instance.PlayerList[bearTurns[round-1]];
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
         bodySprite.color = bearPlayer.PlayerColor;
