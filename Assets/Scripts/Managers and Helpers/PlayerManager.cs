@@ -15,11 +15,11 @@ public class PlayerManager : MonoBehaviour {
     private Color[] colorList = new Color[]
     {
         new Color32(255,133,133,255),
+        new Color32(255,242,133,255),
         new Color32(208,133,255,255),
         new Color32(133,255,144,255),
-        new Color32(255,255,255,255),
         new Color32(255,176,133,255),
-        new Color32(255,242,133,255),
+        new Color32(255,255,255,255),
         new Color32(133,235,255,255)
     };
 

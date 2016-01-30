@@ -43,6 +43,13 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start()
     {
+        // Setup cursor colors
+        for(int i = 0; i < cursors.Count; ++i)
+        {
+            var sr = cursors[i].GetComponent<SpriteRenderer>();
+            sr.color = PlayerManager.instance.FindPlayer(i+1).PlayerColor;
+        }
+
         timer = GetComponent<Timer>();
         round = 0;
         bearTurns.Add(1);
