@@ -33,7 +33,7 @@ public class MainMenuManager : MonoBehaviour
 	IEnumerator PlayAnimation()
 	{
 		SoundManager.instance.PlaySingleSfx(roar);
-		GetComponent<Animation>().GetComponent<Animator>().Play("Start Screen");
+        animationObj.GetComponent<Animator>().Play("Start Screen");
 		yield return 0;
 		yield return new WaitForSeconds(animationObj.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
 		animationObj.GetComponent<Animator>().Play("Idle");
