@@ -6,7 +6,7 @@ public class BearNeck : MonoBehaviour
 	public Transform bearHead;
 	public Transform bearBody;
 
-	private float factor = 1.5f;
+	private float factor = 2f;
 
 	private Vector3 body;
 	private Vector3 head;
