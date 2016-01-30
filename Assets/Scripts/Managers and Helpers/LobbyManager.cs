@@ -24,7 +24,7 @@ public class LobbyManager : MonoBehaviour {
 	void Update () {
         for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
         {
-            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) || Input.GetKeyDown("space") )
+            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
             {
                 // If player is not readied up yet
                 if(!PlayerManager.instance.IsPlayerAdded(i))
