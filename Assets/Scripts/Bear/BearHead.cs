@@ -54,12 +54,6 @@ public class BearHead : MonoBehaviour
 			// Head
 			transform.Translate(direction * shootVelocity * Time.deltaTime);
 
-			if(transform.position.x >= 20 || transform.position.x <= -20 || transform.position.y >= 20)
-			{
-				extending = false;
-				retracting = true;
-			}
-
 			// Neck
 			float distance = Vector3.Distance(defaultPosition, transform.position);
 
@@ -107,6 +101,11 @@ public class BearHead : MonoBehaviour
 		if(other.tag == "Neck" && retracting)
 		{
 			ObjectPool.instance.PoolObject(other.gameObject);
+		}
+		else if(other.tag == "Bear Wall" && extending)
+		{
+			extending = false;
+			retracting = true;
 		}
 	}
 
