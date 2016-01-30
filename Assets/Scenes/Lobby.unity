@@ -849,7 +849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd22afdad5ed460dbcb1153a1187771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusText: {fileID: 0}
+  playerImages:
+  - {fileID: 541603177}
+  - {fileID: 1325066995}
+  - {fileID: 1562163302}
+  - {fileID: 210916216}
 --- !u!4 &1132890805
 Transform:
   m_ObjectHideFlags: 0
