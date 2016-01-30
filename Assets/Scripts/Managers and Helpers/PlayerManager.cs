@@ -135,6 +135,21 @@ public class PlayerManager : MonoBehaviour {
                 return;
             }
         }
+    }
 
+    public Player FindWinner()
+    {
+        Player winner = playerList[0];
+        int highscore = -9999;
+
+        foreach(Player p in playerList)
+        {
+            if( p.Score > highscore )
+            {
+                winner = p;
+            }
+        }
+
+        return winner;
     }
 }

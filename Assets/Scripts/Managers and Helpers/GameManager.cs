@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour {
     public SpriteRenderer headSprite;
     public SpriteRenderer bodySprite;
 
+    public Canvas roundCanvas;
+    public Text roundText;
+    public Text bearText;
+
+    public Canvas endgameCanvas;
+    public Text winnerText;
+
     public int numFishPerRound;
     public BearHead bear;
 
@@ -19,7 +26,7 @@ public class GameManager : MonoBehaviour {
     private int[] fishCount = new int[4];
     private float[] shootTime = new float[4];
     private bool allEmpty = false;
-    private bool gameStarted = false;
+    private bool gameRunning = false;
 
     void Awake()
     {
@@ -38,7 +45,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
-        if( gameStarted )
+        if( gameRunning )
         {
             for(int i = 0; i < fishCount.Length; ++i)
             {
@@ -85,10 +92,12 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[round];
+        bearPlayer = PlayerManager.instance.PlayerList[round-1];
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
         bodySprite.color = bearPlayer.PlayerColor;
+        roundCanvas.enabled = false;
+        endgameCanvas.enabled = false;
 
         for(int i = 0; i < fishCount.Length; ++i)
         {
@@ -108,20 +117,23 @@ public class GameManager : MonoBehaviour {
     private IEnumerator roundStartCoroutine()
     {
         //TODO: Display banner with round
-        Debug.Log(bearPlayer.PlayerNumber.ToString() + " is bear.");
-        yield return new WaitForSeconds(1);
+        roundCanvas.enabled = true;
+        roundText.text = "Round " + round;
+        bearText.text = "Player " + bearPlayer.PlayerNumber.ToString() + " is the Bear!";
+        yield return new WaitForSeconds(3);
+        roundCanvas.enabled = false;
         StartRound();
     }
 
     public void StartRound()
     {
         timer.StartTimer();
-        gameStarted = true;
+        gameRunning = true;
     }
 
     public void EndRound()
     {
-        gameStarted = false;
+        gameRunning = false;
 
         timer.StopTimer();
 
@@ -142,28 +154,38 @@ public class GameManager : MonoBehaviour {
 
     private void EndGame()
     {
-        
+        Player p = PlayerManager.instance.FindWinner();
+        roundCanvas.enabled = false;
+        endgameCanvas.enabled = true;
+
+        winnerText.text = "Winner: P" + p.PlayerNumber.ToString();
     }
 
     public void SalmonFlee(int controller)
     {
-        var p = PlayerManager.instance.FindPlayer(controller);
-        if( p != null )
+        if( gameRunning)
         {
-            p.ModifyScore(round-1, 1);
+            var p = PlayerManager.instance.FindPlayer(controller);
+            if( p != null )
+            {
+                p.ModifyScore(round-1, 1);
+            }
         }
     }
 
     public void SalmonCaught(int controller)
     {
-        // Player who gets caught loses points
-        var p = PlayerManager.instance.FindPlayer(controller);
-        if( p != null )
+        if( gameRunning )
         {
-            p.ModifyScore(round-1, -2);
-        }
+            // Player who gets caught loses points
+            var p = PlayerManager.instance.FindPlayer(controller);
+            if( p != null )
+            {
+                p.ModifyScore(round-1, -2);
+            }
 
-        bearPlayer.ModifyScore(round-1, 10);
+            bearPlayer.ModifyScore(round-1, 10);
+        }
     }
 
     private void ShootFish(int controller)

@@ -8,6 +8,7 @@ public class UIScore : MonoBehaviour {
     private List<Player> playerList;
 
     public List<Text> scoreList;
+    public List<Text> endScoreList;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,8 @@ public class UIScore : MonoBehaviour {
         {
             scoreList[i].text = "P" + (i+1).ToString() + " Score:" + playerList[i].Score.ToString();
             scoreList[i].color = playerList[i].PlayerColor;
+
+            endScoreList[i].text = playerList[i].Score.ToString();
         }
 	}
 }
