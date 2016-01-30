@@ -6,7 +6,7 @@ public class BearNeck : MonoBehaviour
 	public Transform bearHead;
 	public Transform bearBody;
 
-	private float factor = 1.4f;
+	private float factor = 1.5f;
 
 	private Vector3 body;
 	private Vector3 head;
@@ -14,8 +14,8 @@ public class BearNeck : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		body = new Vector3(bearBody.position.x + 0.9f, bearBody.position.y + 0.5f, bearBody.position.z);
-		head = new Vector3(bearHead.position.x - 0.3f, bearHead.position.y - 0.1f, bearHead.position.z);
+		body = new Vector3(bearBody.position.x + 0.65f, bearBody.position.y + 1.0f, bearBody.position.z);
+		head = new Vector3(bearHead.position.x, bearHead.position.y - 0.1f, bearHead.position.z);
 		transform.position = body;
 		SetPos(body, head);
 	}
@@ -23,7 +23,7 @@ public class BearNeck : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		head = new Vector3(bearHead.position.x - 0.3f, bearHead.position.y - 0.1f, bearHead.position.z);
+		head = new Vector3(bearHead.position.x, bearHead.position.y - 0.1f, bearHead.position.z);
 		SetPos(body, head);
 	}
 
