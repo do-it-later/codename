@@ -6,6 +6,8 @@ public class BearHead : MonoBehaviour
 	public float shootVelocity;
 	public float retractVelocity;
 
+	public GameObject image;
+
 	private bool extending;
 	private bool retracting;
 	private bool canShoot;
@@ -50,6 +52,7 @@ public class BearHead : MonoBehaviour
 			{
 				transform.position = defaultPosition;
 				transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+				image.transform.Rotate(0.0f, 0.0f, -20.0f);
 				retracting = false;
 				canShoot = true;
 			}
@@ -75,6 +78,7 @@ public class BearHead : MonoBehaviour
 			direction = transform.rotation * direction;
 			direction.Normalize();
 			transform.Rotate(0, 0, angle);
+			image.transform.Rotate(0.0f, 0.0f, 20.0f);
 			extending = true;
 			canShoot = false;
 		}
