@@ -3,6 +3,7 @@
 
 The intent of this package is to eliminate some of the less exciting work of creating a small working game including title screen menu, pause menu and basic audio options.
 
+If you would prefer to watch a video which includes a quick setup walk through and a longer explanation of how the package works, look here: http://unity3d.com/learn/tutorials/modules/beginner/live-training-archive/game-jam-template
 
 Setup guide:
 
@@ -33,10 +34,10 @@ Audio Configuration:
 
 
 The UI game object has a component called PlayMusic attached to it.
-* Assign the first clip you want to play to the AudioClip slot of the AudioSource attached to the 'UI' GameObject.
-* Assign the music clips you want to play to slots in the music clips array
-* If you want to play a different music clip after Start is pressed put the number of that clip in the 'Music To Change To' field in Start Options.
-* Set Change Music On Start to true. If left false, the clip in the AudioSource will loop.
+* Assign the Audio Clip containing your title music loop to the Title Music variable
+* If you have separate music for your main game play, assign that to the Audio Clip variable Main Music
+* If you have separate music for your main game play and your game runs in a single scene, set Change Music On Start to True.
+* The clip assigned to Main music will play if scene index 1 is loaded. If you want the same music to play after changing scenes leave Change Music On Start false.
 * Assign the ‘Output’ property of each Audio Source playing sound effects to the ‘SoundFx’ group of ‘MasterMixer’ by clicking the circle select button to the right of Output.
 
 
@@ -76,7 +77,7 @@ Pause Panel
 
 
 Music 
-- Change or loop music clips when starting game
+-Play music based on scene number
 -Music pre-routed to Audio Mixer, connected to UI
 
 
