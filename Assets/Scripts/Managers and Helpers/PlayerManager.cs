@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour {
     public const int MAX_PLAYERS = 4;
 
     private List<Player> playerList = new List<Player>();
+    public List<Player> PlayerList { get { return playerList; } }
     public int NumberOfPlayers { get { return playerList.Count; } }
 
     private Color[] colorList = new Color[]
@@ -35,6 +36,18 @@ public class PlayerManager : MonoBehaviour {
             Debug.Log("Duplicate instance detected, destroying gameObject");
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        AddPlayer(1);
+        SetNextPlayerColor(1);
+        AddPlayer(2);
+        SetNextPlayerColor(2);
+        AddPlayer(3);
+        SetNextPlayerColor(3);
+        AddPlayer(4);
+        SetNextPlayerColor(4);
     }
 
     public bool IsPlayerAdded(int controller)

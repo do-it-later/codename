@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-    public int caughtScore = 10;
-    public int passedScore = 1;
-    private Team team1 = new Team();
-    private Team team2 = new Team();
+    public SpriteRenderer headSprite;
+    public SpriteRenderer bodySprite;
+
+    public int numFishPerRound;
+    public BearHead bear;
 
     private Timer timer;
-    private Score score;
+    private bool paused;
     private int round;
+    private Player bearPlayer;
+
+    private int[] fishCount = new int[4];
+    private float[] shootTime = new float[4];
+    private bool allEmpty = false;
+    private bool gameStarted = false;
 
     void Awake()
     {
@@ -22,99 +30,152 @@ public class GameManager : MonoBehaviour {
 	void Start()
     {
         timer = GetComponent<Timer>();
-        score = GetComponent<Score>();
         round = 0;
 
-        int firstTeam = Random.Range(1,2);
-
-        if( firstTeam == 1 )
-            team1.AreBears = true;
-        else
-            team2.AreBears = true;
-
-        StartCoroutine("roundStartCoroutine");
-    }
-	
-    private IEnumerator roundStartCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        StartRound();
+        PrepareNextRound();
     }
 
 	// Update is called once per frame
 	void Update()
     {
-	
+        if( gameStarted )
+        {
+            for(int i = 0; i < fishCount.Length; ++i)
+            {
+                // ignore your own player
+                if(bearPlayer.PlayerNumber == i-1)
+                    continue;
+
+                if(fishCount[i] > 0)
+                {
+                    allEmpty = false;
+                    break;
+                }
+                else
+                {
+                    allEmpty = true;
+                }
+            }
+
+            if( allEmpty )
+                EndRound();
+
+            for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
+            {
+                //Pause
+                if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
+                {
+                    if( !paused )
+                        Time.timeScale = 0;
+                    else
+                        Time.timeScale = 1;
+
+                    paused = !paused;
+                }
+
+                if( Input.GetKey( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
+                {
+                    ShootFish(i);
+                }
+            }
+        }
 	}
+
+    private void PrepareNextRound()
+    {
+        round++;
+        allEmpty = false;
+        bearPlayer = PlayerManager.instance.PlayerList[round-1];
+        bear.playerNumber = bearPlayer.PlayerNumber;
+        headSprite.color = bearPlayer.PlayerColor;
+        bodySprite.color = bearPlayer.PlayerColor;
+
+        for(int i = 0; i < fishCount.Length; ++i)
+        {
+            fishCount[i] = numFishPerRound;
+        }
+
+        for(int i = 0; i < shootTime.Length; ++i)
+        {
+            shootTime[i] = 0.0f;
+        }
+
+        timer.ResetTimer();
+
+        StartCoroutine("roundStartCoroutine");
+    }
+
+    private IEnumerator roundStartCoroutine()
+    {
+        //TODO: Display banner with round
+        Debug.Log(bearPlayer.PlayerNumber.ToString() + " is bear.");
+        yield return new WaitForSeconds(1);
+        StartRound();
+    }
 
     public void StartRound()
     {
-        round++;
-
-        timer.ResetTimer();
         timer.StartTimer();
-
-		ObjectPool.instance.GetObject("Fish", true);
+        gameStarted = true;
     }
 
     public void EndRound()
     {
+        gameStarted = false;
+
         timer.StopTimer();
 
-        //Check for a winner
-        Score.AnimalTeam animalWinner = score.Winner();
-
-        Debug.Log(animalWinner);
-
-        if( animalWinner == Score.AnimalTeam.BOTH )
+        for(int i = 0; i < fishCount.Length; ++i)
         {
-            team1.Wins++;
-            team2.Wins++;
+            // ignore your own player
+            if(bearPlayer.PlayerNumber == i-1)
+                continue;
+
+            bearPlayer.ModifyScore(round-1, fishCount[i]/2);
         }
 
-        if( animalWinner == Score.AnimalTeam.BEAR && team1.AreBears ||
-            animalWinner == Score.AnimalTeam.SALMON && team2.AreBears )
-        {
-            team1.Wins++;
-        }
+        if( round >= PlayerManager.MAX_PLAYERS )
+            EndGame();
         else
+            PrepareNextRound();
+    }
+
+    private void EndGame()
+    {
+        
+    }
+
+    public void SalmonFlee(int controller)
+    {
+        var p = PlayerManager.instance.FindPlayer(controller);
+        if( p != null )
         {
-            team2.Wins++;
+            p.ModifyScore(round-1, 1);
         }
     }
 
-    public void SalmonCaught()
+    public void SalmonCaught(int controller)
     {
-        score.ModifyScore(Score.AnimalTeam.BEAR, 8);
-        if( score.GoalReached() )
+        // Player who gets caught loses points
+        var p = PlayerManager.instance.FindPlayer(controller);
+        if( p != null )
         {
-            EndRound();
+            p.ModifyScore(round-1, -2);
         }
 
-        if( timer.RemainingTime > 0 )
-            ObjectPool.instance.GetObject("Fish");
+        bearPlayer.ModifyScore(round-1, 10);
     }
 
-    public void SalmonFlee()
+    private void ShootFish(int controller)
     {
-        score.ModifyScore(Score.AnimalTeam.SALMON, 1);
-        if( score.GoalReached() )
-        {
-            EndRound();
-        }
-        if( timer.RemainingTime > 0 )
-            ObjectPool.instance.GetObject("Fish");
-    }
+        if( bearPlayer.PlayerNumber == controller)
+            return;
 
-    public void SalmonCrash()
-    {
-        score.ModifyScore(Score.AnimalTeam.BEAR, 4);
-        if( score.GoalReached() )
+        if( fishCount[controller-1] > 0 && Time.time - shootTime[controller-1] > 0.2f )
         {
-            EndRound();
+            ObjectPool.instance.GetObject("P" + controller.ToString() + "_Fish");
+            fishCount[controller-1]--;
+            shootTime[controller-1] = Time.time;
         }
-
-        if( timer.RemainingTime > 0 )
-            ObjectPool.instance.GetObject("Fish");
     }
 }

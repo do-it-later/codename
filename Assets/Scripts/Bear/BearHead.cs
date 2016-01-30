@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BearHead : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class BearHead : MonoBehaviour
 	private Vector3 direction;
 	private Vector3 defaultPosition;
 
+	private float lastDistance;
+
+	private List<GameObject> neckList;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -28,6 +33,10 @@ public class BearHead : MonoBehaviour
 		retracting = false;
 		canShoot = true;
 		flipped = !onLeft;
+
+		lastDistance = 0.0f;
+
+		neckList = new List<GameObject>();
 
 //		Time.timeScale = 0.1f;
 	}
@@ -42,16 +51,25 @@ public class BearHead : MonoBehaviour
 
 		if(extending)
 		{
+			// Head
 			transform.Translate(direction * shootVelocity * Time.deltaTime);
 
-			if(transform.position.x >= 20 || transform.position.x <= -20 || transform.position.y >= 20)
+			// Neck
+			float distance = Vector3.Distance(defaultPosition, transform.position);
+
+			if(distance - lastDistance >= 0.2)
 			{
-				extending = false;
-				retracting = true;
+				GameObject neck = ObjectPool.instance.GetObject("Neck");
+				neck.transform.position = transform.position;
+				neck.transform.rotation = transform.rotation;
+				lastDistance = distance;
+
+				neckList.Add(neck);
 			}
 		}
 		else if(retracting)
 		{
+			// Head
 			transform.Translate(direction * -retractVelocity * Time.deltaTime);
 
 			if(transform.position.y <= defaultPosition.y)
@@ -65,11 +83,29 @@ public class BearHead : MonoBehaviour
 					transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 				}
 				transform.position = defaultPosition;
-				Debug.Log(defaultPosition);
 				image.transform.Rotate(0.0f, 0.0f, -20.0f);
 				retracting = false;
 				canShoot = true;
+
+				foreach(GameObject neck in neckList)
+				{
+					ObjectPool.instance.PoolObject(neck);
+				}
+				neckList.Clear();
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == "Neck" && retracting)
+		{
+			ObjectPool.instance.PoolObject(other.gameObject);
+		}
+		else if(other.tag == "Bear Wall" && extending)
+		{
+			extending = false;
+			retracting = true;
 		}
 	}
 
@@ -129,6 +165,8 @@ public class BearHead : MonoBehaviour
 			canShoot = false;
 
 			defaultPosition = transform.position;
+
+			lastDistance = 0.0f;
 		}
 	}
 }

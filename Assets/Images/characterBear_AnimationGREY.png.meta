@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: d25ad0ed6219544a09d60375db733e57
-timeCreated: 1454134022
+guid: 08101e80df36a481a8653704a499c86c
+timeCreated: 1454157469
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: characterBear_Animation-2_0
-    21300002: characterBear_Animation-2_1
-    21300004: characterBear_Animation-2_2
-    21300006: characterBear_Animation-2_3
-    21300008: characterBear_Animation-2_4
-    21300010: characterBear_Animation-2_5
-    21300012: characterBear_Animation-2_6
-    21300014: characterBear_Animation-2_7
-    21300016: characterBear_Animation-2_8
-    21300018: characterBear_Animation-2_9
-    21300020: characterBear_Animation-2_10
-    21300022: characterBear_Animation-2_11
-    21300024: characterBear_Animation-2_12
-    21300026: characterBear_Animation-2_13
+    21300000: characterBear_AnimationGREY_0
+    21300002: characterBear_AnimationGREY_1
+    21300004: characterBear_AnimationGREY_2
+    21300006: characterBear_AnimationGREY_3
+    21300008: characterBear_AnimationGREY_4
+    21300010: characterBear_AnimationGREY_5
+    21300012: characterBear_AnimationGREY_6
+    21300014: characterBear_AnimationGREY_7
+    21300016: characterBear_AnimationGREY_8
+    21300018: characterBear_AnimationGREY_9
+    21300020: characterBear_AnimationGREY_10
+    21300022: characterBear_AnimationGREY_11
+    21300024: characterBear_AnimationGREY_12
+    21300026: characterBear_AnimationGREY_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -64,7 +64,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: characterBear_Animation-2_0
+    - name: characterBear_AnimationGREY_0
       rect:
         serializedVersion: 2
         x: 0
@@ -96,7 +96,7 @@ TextureImporter:
         - {x: -121, y: 74}
         - {x: -124, y: 75}
         - {x: -126, y: 73}
-    - name: characterBear_Animation-2_1
+    - name: characterBear_AnimationGREY_1
       rect:
         serializedVersion: 2
         x: 350
@@ -126,7 +126,7 @@ TextureImporter:
         - {x: -121, y: 74}
         - {x: -124, y: 75}
         - {x: -126, y: 73}
-    - name: characterBear_Animation-2_2
+    - name: characterBear_AnimationGREY_2
       rect:
         serializedVersion: 2
         x: 700
@@ -155,7 +155,7 @@ TextureImporter:
         - {x: -121, y: 74}
         - {x: -124, y: 75}
         - {x: -126, y: 73}
-    - name: characterBear_Animation-2_3
+    - name: characterBear_AnimationGREY_3
       rect:
         serializedVersion: 2
         x: 1050
@@ -186,7 +186,7 @@ TextureImporter:
         - {x: -122, y: 74}
         - {x: -125, y: 75}
         - {x: -127, y: 73}
-    - name: characterBear_Animation-2_4
+    - name: characterBear_AnimationGREY_4
       rect:
         serializedVersion: 2
         x: 1400
@@ -213,7 +213,7 @@ TextureImporter:
         - {x: 94, y: -119}
         - {x: 110, y: -83}
         - {x: 110, y: -19}
-    - name: characterBear_Animation-2_5
+    - name: characterBear_AnimationGREY_5
       rect:
         serializedVersion: 2
         x: 0
@@ -224,28 +224,29 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 68, y: 100}
-        - {x: 3, y: 108}
-        - {x: -22, y: 108}
-        - {x: -30, y: 104}
-        - {x: -34, y: 88}
-        - {x: -42, y: 57}
-        - {x: -50, y: 65}
-        - {x: -89, y: 68}
-        - {x: -89, y: -47}
-        - {x: -78, y: -122}
-        - {x: -64, y: -126}
-        - {x: 2, y: -126}
-        - {x: 98, y: -119}
-        - {x: 120, y: -87}
-        - {x: 120, y: 34}
-        - {x: 102, y: 104}
-      - - {x: -117, y: 71}
-        - {x: -114, y: 72}
-        - {x: -114, y: 75}
-        - {x: -117, y: 76}
-        - {x: -119, y: 74}
-    - name: characterBear_Animation-2_6
+      - - {x: 79, y: 25}
+        - {x: 82, y: 82}
+        - {x: 73, y: 99}
+        - {x: 26, y: 107}
+        - {x: -32, y: 107}
+        - {x: -49, y: 89}
+        - {x: -65, y: 67}
+        - {x: -95, y: 61}
+        - {x: -95, y: 20}
+        - {x: -90, y: -34}
+        - {x: -69, y: -115}
+        - {x: -59, y: -127}
+        - {x: -25, y: -127}
+        - {x: 92, y: -120}
+        - {x: 114, y: -68}
+        - {x: 114, y: -30}
+        - {x: 103, y: 15}
+      - - {x: -123, y: 70}
+        - {x: -120, y: 71}
+        - {x: -120, y: 74}
+        - {x: -123, y: 75}
+        - {x: -125, y: 73}
+    - name: characterBear_AnimationGREY_6
       rect:
         serializedVersion: 2
         x: 350
@@ -256,28 +257,29 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -52, y: 107}
-        - {x: -52, y: 94}
-        - {x: -55, y: 89}
-        - {x: -54, y: 74}
-        - {x: -58, y: 49}
-        - {x: -54, y: 32}
-        - {x: -62, y: 64}
-        - {x: -88, y: 65}
-        - {x: -106, y: 61}
-        - {x: -106, y: 18}
-        - {x: -71, y: -126}
-        - {x: 51, y: -126}
-        - {x: 91, y: -120}
-        - {x: 115, y: -57}
-        - {x: 115, y: -17}
-        - {x: 81, y: 107}
-      - - {x: -125, y: 71}
-        - {x: -122, y: 72}
-        - {x: -122, y: 75}
-        - {x: -125, y: 76}
-        - {x: -127, y: 74}
-    - name: characterBear_Animation-2_7
+      - - {x: 60, y: 106}
+        - {x: 1, y: 106}
+        - {x: -49, y: 100}
+        - {x: -57, y: 89}
+        - {x: -57, y: 48}
+        - {x: -53, y: 31}
+        - {x: -61, y: 63}
+        - {x: -87, y: 64}
+        - {x: -105, y: 56}
+        - {x: -105, y: 39}
+        - {x: -94, y: -30}
+        - {x: -65, y: -127}
+        - {x: 36, y: -127}
+        - {x: 92, y: -120}
+        - {x: 116, y: -59}
+        - {x: 116, y: -26}
+        - {x: 103, y: 10}
+      - - {x: -124, y: 70}
+        - {x: -121, y: 71}
+        - {x: -121, y: 74}
+        - {x: -124, y: 75}
+        - {x: -126, y: 73}
+    - name: characterBear_AnimationGREY_7
       rect:
         serializedVersion: 2
         x: 700
@@ -288,28 +290,28 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 83, y: 75}
-        - {x: 77, y: 106}
-        - {x: -38, y: 106}
-        - {x: -52, y: 82}
-        - {x: -49, y: 25}
-        - {x: -108, y: 56}
-        - {x: -130, y: 44}
-        - {x: -140, y: 35}
-        - {x: -140, y: 27}
-        - {x: -126, y: -10}
-        - {x: -71, y: -125}
-        - {x: -66, y: -126}
-        - {x: -11, y: -126}
-        - {x: 92, y: -119}
-        - {x: 119, y: -63}
-        - {x: 119, y: -34}
-      - - {x: -124, y: 71}
-        - {x: -121, y: 72}
-        - {x: -121, y: 75}
-        - {x: -124, y: 76}
-        - {x: -126, y: 74}
-    - name: characterBear_Animation-2_8
+      - - {x: 84, y: 75}
+        - {x: 78, y: 106}
+        - {x: -37, y: 106}
+        - {x: -51, y: 82}
+        - {x: -48, y: 25}
+        - {x: -107, y: 56}
+        - {x: -129, y: 44}
+        - {x: -139, y: 35}
+        - {x: -139, y: 27}
+        - {x: -125, y: -10}
+        - {x: -70, y: -125}
+        - {x: -65, y: -126}
+        - {x: -10, y: -126}
+        - {x: 93, y: -119}
+        - {x: 120, y: -63}
+        - {x: 120, y: -34}
+      - - {x: -123, y: 71}
+        - {x: -120, y: 72}
+        - {x: -120, y: 75}
+        - {x: -123, y: 76}
+        - {x: -125, y: 74}
+    - name: characterBear_AnimationGREY_8
       rect:
         serializedVersion: 2
         x: 1050
@@ -341,7 +343,7 @@ TextureImporter:
         - {x: -121, y: 75}
         - {x: -124, y: 76}
         - {x: -126, y: 74}
-    - name: characterBear_Animation-2_9
+    - name: characterBear_AnimationGREY_9
       rect:
         serializedVersion: 2
         x: 1400
@@ -352,23 +354,23 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 91, y: 8}
-        - {x: 60, y: 106}
-        - {x: 18, y: 108}
-        - {x: -65, y: 108}
-        - {x: -86, y: 10}
-        - {x: -132, y: 44}
-        - {x: -154, y: 40}
-        - {x: -167, y: 25}
-        - {x: -167, y: 11}
-        - {x: -111, y: -51}
-        - {x: -88, y: -115}
-        - {x: -74, y: -126}
-        - {x: -4, y: -126}
-        - {x: 79, y: -118}
-        - {x: 98, y: -68}
-        - {x: 98, y: -27}
-    - name: characterBear_Animation-2_10
+      - - {x: 102, y: 6}
+        - {x: 92, y: 87}
+        - {x: 61, y: 107}
+        - {x: -49, y: 107}
+        - {x: -64, y: 14}
+        - {x: -86, y: -8}
+        - {x: -126, y: 49}
+        - {x: -153, y: 25}
+        - {x: -153, y: 9}
+        - {x: -95, y: -48}
+        - {x: -65, y: -127}
+        - {x: 73, y: -127}
+        - {x: 87, y: -126}
+        - {x: 100, y: -96}
+        - {x: 112, y: -56}
+        - {x: 112, y: -29}
+    - name: characterBear_AnimationGREY_10
       rect:
         serializedVersion: 2
         x: 0
@@ -400,7 +402,7 @@ TextureImporter:
         - {x: -122, y: 74}
         - {x: -125, y: 75}
         - {x: -127, y: 73}
-    - name: characterBear_Animation-2_11
+    - name: characterBear_AnimationGREY_11
       rect:
         serializedVersion: 2
         x: 350
@@ -432,7 +434,7 @@ TextureImporter:
         - {x: -122, y: 74}
         - {x: -125, y: 75}
         - {x: -127, y: 73}
-    - name: characterBear_Animation-2_12
+    - name: characterBear_AnimationGREY_12
       rect:
         serializedVersion: 2
         x: 700
@@ -462,7 +464,7 @@ TextureImporter:
         - {x: -122, y: 74}
         - {x: -125, y: 75}
         - {x: -127, y: 73}
-    - name: characterBear_Animation-2_13
+    - name: characterBear_AnimationGREY_13
       rect:
         serializedVersion: 2
         x: 1050
