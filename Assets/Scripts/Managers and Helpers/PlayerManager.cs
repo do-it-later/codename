@@ -14,15 +14,16 @@ public class PlayerManager : MonoBehaviour {
 
     private Color[] colorList = new Color[]
     {
-        new Color32(255,255,255,255),
         new Color32(255,133,133,255),
-        new Color32(255,242,133,255),
+        new Color32(208,133,255,255),
         new Color32(133,255,144,255),
-        new Color32(133,235,255,255),
-        new Color32(208,133,255,255)
+        new Color32(255,255,255,255),
+        new Color32(255,176,133,255),
+        new Color32(255,242,133,255),
+        new Color32(133,235,255,255)
     };
 
-    private int[] colorChoices = new int[]{ -1,-1,-1,-1 };
+    private int[] colorChoices = new int[]{ 0,1,2,3 };
 
     void Awake()
     {
@@ -41,13 +42,9 @@ public class PlayerManager : MonoBehaviour {
     void Start()
     {
         AddPlayer(1);
-        SetNextPlayerColor(1);
         AddPlayer(2);
-        SetNextPlayerColor(2);
         AddPlayer(3);
-        SetNextPlayerColor(3);
         AddPlayer(4);
-        SetNextPlayerColor(4);
     }
 
     public bool IsPlayerAdded(int controller)
@@ -106,10 +103,7 @@ public class PlayerManager : MonoBehaviour {
     public void SetNextPlayerColor(int controller)
     {
         int newChoice;
-        if( colorChoices[controller-1] == -1 )
-            newChoice = controller-1;
-        else
-            newChoice = (colorChoices[controller-1] + 1) % colorList.Length;
+        newChoice = (colorChoices[controller-1] + 1) % colorList.Length;
 
         while( true )
         {
@@ -119,6 +113,7 @@ public class PlayerManager : MonoBehaviour {
                 if( newChoice == i )
                 {
                     newChoice++;
+                    newChoice = newChoice % colorList.Length;
                     found = true;
                     break;
                 }
