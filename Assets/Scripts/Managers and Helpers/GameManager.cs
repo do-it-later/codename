@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
     private Timer timer;
     private Score score;
     private int round;
-    private Team[] roundWinners;
 
     void Awake()
     {
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour {
     {
         timer = GetComponent<Timer>();
         score = GetComponent<Score>();
-        roundWinners = new Team[3];
         round = 0;
 
         int firstTeam = Random.Range(1,2);
@@ -33,8 +31,16 @@ public class GameManager : MonoBehaviour {
             team1.AreBears = true;
         else
             team2.AreBears = true;
+
+        StartCoroutine("roundStartCoroutine");
     }
 	
+    private IEnumerator roundStartCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        StartRound();
+    }
+
 	// Update is called once per frame
 	void Update()
     {
@@ -57,6 +63,8 @@ public class GameManager : MonoBehaviour {
 
         //Check for a winner
         Score.AnimalTeam animalWinner = score.Winner();
+
+        Debug.Log(animalWinner);
 
         if( animalWinner == Score.AnimalTeam.BOTH )
         {
@@ -82,6 +90,9 @@ public class GameManager : MonoBehaviour {
         {
             EndRound();
         }
+
+        if( timer.RemainingTime > 0 )
+            ObjectPool.instance.GetObject("Fish");
     }
 
     public void SalmonFlee()
@@ -91,5 +102,19 @@ public class GameManager : MonoBehaviour {
         {
             EndRound();
         }
+        if( timer.RemainingTime > 0 )
+            ObjectPool.instance.GetObject("Fish");
+    }
+
+    public void SalmonCrash()
+    {
+        score.ModifyScore(Score.AnimalTeam.BEAR, 4);
+        if( score.GoalReached() )
+        {
+            EndRound();
+        }
+
+        if( timer.RemainingTime > 0 )
+            ObjectPool.instance.GetObject("Fish");
     }
 }

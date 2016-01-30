@@ -8,6 +8,8 @@ public class FishMovement : MonoBehaviour
     public float strafeSpeed = 10.0f;
 
 	public Vector3 direction;
+    private Vector3 initDirection;
+    private Vector3 initPosition;
 
 	public int playerNumber;
 	public bool inControl;
@@ -18,6 +20,9 @@ public class FishMovement : MonoBehaviour
 
     void Start()
     {
+        initPosition = gameObject.transform.position;
+        initDirection = direction; 
+
         hasJumped = false;
 		canJump = false;
 
@@ -52,7 +57,9 @@ public class FishMovement : MonoBehaviour
 
 		if(transform.position.z <= -96)
 		{
-			ObjectPool.instance.PoolObject(gameObject);
+            ResetPosition();
+            GameManager.instance.SalmonFlee();
+            ObjectPool.instance.PoolObject(gameObject);
 		}
     }
 
@@ -63,10 +70,10 @@ public class FishMovement : MonoBehaviour
 			canJump = true;
 		}
 		else if(other.tag == "Bear")
-		{
-			gameObject.SetActive(false);
-			ObjectPool.instance.PoolObject(gameObject);
-			ObjectPool.instance.GetObject("Fish");
+        {
+            ResetPosition();
+            GameManager.instance.SalmonCaught();
+            ObjectPool.instance.PoolObject(gameObject);
 			Debug.Log("YAY");
 		}
 	}
@@ -76,6 +83,21 @@ public class FishMovement : MonoBehaviour
 		if(other.tag == "Jump Box")
 		{
 			canJump = false;
+            if( !hasJumped )
+            {
+                GameManager.instance.SalmonCrash();
+                ResetPosition();
+                ObjectPool.instance.PoolObject(gameObject);
+            }
 		}
 	}
+
+    private void ResetPosition()
+    {
+        transform.position = initPosition;
+        direction = initDirection;
+        direction.Normalize();
+
+        hasJumped = false;
+    }
 }

@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour {
     public Text timerText;
 
     private float remainingTime;
+    public float RemainingTime { get { return remainingTime;} }
     private bool isRunning;
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class Timer : MonoBehaviour {
             {
                 remainingTime = 0;
                 isRunning = false;
+                GameManager.instance.EndRound();
             }
 
             timerText.text = Mathf.Ceil(remainingTime).ToString();
