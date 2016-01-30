@@ -9,6 +9,9 @@ public class FishMovement : MonoBehaviour
 
 	public Vector3 direction;
 
+	public int playerNumber;
+	public bool inControl;
+
     //
     private bool hasJumped;
 	private bool canJump;
@@ -31,8 +34,8 @@ public class FishMovement : MonoBehaviour
             if (Input.GetKey("d"))
 				direction.x = strafeSpeed;
 
-            if (Input.GetKeyDown("space"))
-            {
+			if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.B)))
+			{
 				if(!hasJumped && canJump)
 				{
 					hasJumped = true;
@@ -46,6 +49,11 @@ public class FishMovement : MonoBehaviour
         }
 
 		this.transform.position += direction * Time.deltaTime * swimSpeed;
+
+		if(transform.position.z <= -96)
+		{
+			ObjectPool.instance.PoolObject(gameObject);
+		}
     }
 
 	void OnTriggerEnter(Collider other)
@@ -57,6 +65,8 @@ public class FishMovement : MonoBehaviour
 		else if(other.tag == "Bear")
 		{
 			gameObject.SetActive(false);
+			ObjectPool.instance.PoolObject(gameObject);
+			ObjectPool.instance.GetObject("Fish");
 			Debug.Log("YAY");
 		}
 	}

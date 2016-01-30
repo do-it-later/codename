@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour {
 
         timer.ResetTimer();
         timer.StartTimer();
+
+		ObjectPool.instance.GetObject("Fish", true);
     }
 
     public void EndRound()
