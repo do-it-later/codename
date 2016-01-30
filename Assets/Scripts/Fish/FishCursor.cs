@@ -9,7 +9,6 @@ public class FishCursor : MonoBehaviour
 
     private Transform fishPointer;
     private Vector3 originalPosition;
-    private Vector3 cameraDimensions;
 
     private float frustumHeight;
     private float frustumWidth;
@@ -22,9 +21,6 @@ public class FishCursor : MonoBehaviour
         fishPointer = transform;
         originalPosition = fishPointer.position;
 
-        cameraDimensions = new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0.0f);
-        //cameraDimensions = new Vector3(Screen.width, Screen.height, 0.0f);
-
         // Distance between bear and camera
 		distanceToPlayArea = Vector3.Distance(GameObject.Find("Bear Left").transform.position, Camera.main.transform.position);
 		distanceToPlayArea = 16.0f; // TODO: remove hardcoded values
@@ -33,7 +29,6 @@ public class FishCursor : MonoBehaviour
 
         // TODO: ofset accounting for rotation of camera
         float offset = Mathf.Tan(Camera.main.transform.rotation.eulerAngles.x * Mathf.Deg2Rad) * distanceToPlayArea;
-        Debug.Log(">>>" + offset);
         frustumHeight -= offset * 2.0f;
 
 
@@ -45,10 +40,7 @@ public class FishCursor : MonoBehaviour
     {
         Vector3 w = fishPointer.position;
         float horizontal = InputHelper.instance.GetHorizForController(ControllerNumber);
-        float verticle = InputHelper.instance.GetVertForController(ControllerNumber);
-
-
-        Debug.Log(horizontal + " : " + verticle);
+        float vertical = InputHelper.instance.GetVertForController(ControllerNumber);
 
         if (!(horizontal <= ControllerErrorThreshold && horizontal >= -ControllerErrorThreshold))
         {
@@ -61,9 +53,9 @@ public class FishCursor : MonoBehaviour
                 w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.5f;
         }
 
-        if (!(verticle <= ControllerErrorThreshold && verticle >= -ControllerErrorThreshold))
+        if (!(vertical <= ControllerErrorThreshold && vertical >= -ControllerErrorThreshold))
         {
-            w.y += verticle * FishPointerSpeed * Time.deltaTime;
+            w.y += vertical * FishPointerSpeed * Time.deltaTime;
 
             if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.5f)
                 w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.5f;

@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swimSpeed: 100
   strafeSpeed: 0.5
+  fishPointer: {fileID: 143888, guid: 8cb662f89c1954614b5fb55fb1755932, type: 2}
   direction: {x: 0, y: -0.4, z: -1}
   playerNumber: 1
   inControl: 0
@@ -85,8 +86,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &21295434
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -141,13 +142,9 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: m_Radius
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Center.y
-      value: 0.5
-      objectReference: {fileID: 0}
+      propertyPath: fishPointer
+      value: 
+      objectReference: {fileID: 143888, guid: 8cb662f89c1954614b5fb55fb1755932, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106272}

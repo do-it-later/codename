@@ -7,18 +7,18 @@ public class FishMovement : MonoBehaviour
     public float swimSpeed = 20.0f;
     public float strafeSpeed = 10.0f;
 
-	public Vector3 direction;
+    public Vector3 direction;
     private Vector3 initDirection;
     private Vector3 initPosition;
 
-	public int playerNumber;
-	public bool inControl;
+    public int playerNumber;
+    public bool inControl;
 
     //
     private bool hasJumped;
-	private bool canJump;
-
+    private bool canJump;
     private GameObject fishPointer;
+
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class FishMovement : MonoBehaviour
 
 		direction.Normalize();
 
-        fishPointer = GameObject.Find("Fish Pointer");
+        fishPointer = GameObject.Find("P" + playerNumber.ToString() + "_Pointer");
     }
 
     void Update()

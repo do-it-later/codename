@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public SpriteRenderer headSprite;
     public SpriteRenderer bodySprite;
+    public List<GameObject> cursors;
 
     public Canvas roundCanvas;
     public Text roundText;
@@ -112,12 +113,22 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[bearTurns[round-1]];
+        bearPlayer = PlayerManager.instance.FindPlayer(bearTurns[round-1]);
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
         bodySprite.color = bearPlayer.PlayerColor;
         roundCanvas.enabled = false;
         endgameCanvas.enabled = false;
+
+        for(int i = 0; i < cursors.Count; ++i)
+        {
+            if( bear.playerNumber - 1 == i)
+            {
+                cursors[i].SetActive(false);
+            }
+            else
+                cursors[i].SetActive(true);
+        }
 
         for(int i = 0; i < fishCount.Length; ++i)
         {
