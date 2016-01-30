@@ -25,8 +25,8 @@ public class LobbyManager : MonoBehaviour {
 
         for(int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i)
         {
-            // must have at least 2 players
-            if( PlayerManager.instance.NumberOfPlayers < 2 )
+            // must have exactly 4 players
+            if( PlayerManager.instance.NumberOfPlayers != PlayerManager.MAX_PLAYERS )
                 break;
             
             // player must be playing
