@@ -37,6 +37,14 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public bool IsPlayerAdded(int controller)
+    {
+        if(FindPlayer(controller) == null)
+            return false;
+
+        return true;
+    }
+
     public bool AddPlayer(int controller)
     {
         if( NumberOfPlayers == MAX_PLAYERS )

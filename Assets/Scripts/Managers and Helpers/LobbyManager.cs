@@ -22,26 +22,40 @@ public class LobbyManager : MonoBehaviour {
         {
             if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
             {
-                Debug.Log("Player " + i.ToString() + " added.");
-                if( PlayerManager.instance.AddPlayer(i) )
+                // If player is not readied up yet
+                if(!PlayerManager.instance.IsPlayerAdded(i))
                 {
-                    playerImages[i-1].enabled = true;
-
-                    Player p = PlayerManager.instance.FindPlayer(i);
-                    if( p != null )
+                    Debug.Log("Player " + i.ToString() + " readied up.");
+                    if (PlayerManager.instance.AddPlayer(i))
                     {
-                        playerImages[i-1].color = p.PlayerColor;
+                        playerImages[i - 1].enabled = true;
+
+                        Player p = PlayerManager.instance.FindPlayer(i);
+                        if (p != null)
+                        {
+                            playerImages[i - 1].color = p.PlayerColor;
+                        }
+                    }
+                }
+                // If player is already ready, remove them
+                else
+                {
+                    Debug.Log("Player " + i.ToString() + " unreadied.");
+                    if (PlayerManager.instance.RemovePlayer(i))
+                    {
+                        playerImages[i - 1].enabled = false;
+                        playerImages[i - 1].color = Color.white;
                     }
                 }
             }
-            else if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.B) ) )
+            /*else if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.B) ) )
             {
                 if( PlayerManager.instance.RemovePlayer(i) )
                 {
                     playerImages[i-1].enabled = false;
                     playerImages[i-1].color = Color.white;
                 }
-            }
+            }*/
             else if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.X) ) )
             {
                 Player p = PlayerManager.instance.FindPlayer(i);
