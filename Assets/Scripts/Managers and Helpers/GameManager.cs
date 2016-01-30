@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public SpriteRenderer headSprite;
+    public SpriteRenderer bodySprite;
 
     public int numFishPerRound;
     public BearHead bear;
@@ -84,6 +87,8 @@ public class GameManager : MonoBehaviour {
         allEmpty = false;
         bearPlayer = PlayerManager.instance.PlayerList[round];
         bear.playerNumber = bearPlayer.PlayerNumber;
+        headSprite.color = bearPlayer.PlayerColor;
+        bodySprite.color = bearPlayer.PlayerColor;
 
         for(int i = 0; i < fishCount.Length; ++i)
         {

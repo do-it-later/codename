@@ -336,6 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5812285d48e4bd6b7466ea9c4db55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  headSprite: {fileID: 1217085705}
+  bodySprite: {fileID: 1362169439}
   numFishPerRound: 200
   bear: {fileID: 996419316}
 --- !u!4 &404233294
