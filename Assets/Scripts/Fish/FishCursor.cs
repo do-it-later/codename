@@ -26,7 +26,8 @@ public class FishCursor : MonoBehaviour
         //cameraDimensions = new Vector3(Screen.width, Screen.height, 0.0f);
 
         // Distance between bear and camera
-        distanceToPlayArea = (GameObject.Find("Bear Left").transform.position - Camera.main.transform.position).magnitude;
+		distanceToPlayArea = Vector3.Distance(GameObject.Find("Bear Left").transform.position, Camera.main.transform.position);
+		distanceToPlayArea = 16.0f; // TODO: remove hardcoded values
 
         frustumHeight = 2.0f * distanceToPlayArea * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
 
@@ -53,22 +54,22 @@ public class FishCursor : MonoBehaviour
         {
             w.x += horizontal * FishPointerSpeed * Time.deltaTime;
 
-            if(w.x > originalPosition.x + (frustumWidth / 2.0f))
-                w.x = originalPosition.x + (frustumWidth / 2.0f);
+            if(w.x > originalPosition.x + (frustumWidth / 2.0f) - 3.5f)
+				w.x = originalPosition.x + (frustumWidth / 2.0f) - 3.5f;
 
-             if(w.x <= originalPosition.x - (frustumWidth / 2.0f))
-                w.x = originalPosition.x - (frustumWidth / 2.0f);
+             if(w.x <= originalPosition.x - (frustumWidth / 2.0f) + 3.5f)
+                w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.5f;
         }
 
         if (!(verticle <= ControllerErrorThreshold && verticle >= -ControllerErrorThreshold))
         {
             w.y += verticle * FishPointerSpeed * Time.deltaTime;
 
-            if (w.y > originalPosition.y + (frustumHeight / 2.0f))
-                w.y = originalPosition.y + (frustumHeight / 2.0f);
+            if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.5f)
+                w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.5f;
 
-            if (w.y <= originalPosition.y - (frustumHeight / 2.0f))
-                w.y = originalPosition.y - (frustumHeight / 2.0f);
+            if (w.y <= originalPosition.y - (frustumHeight / 2.0f) + 5.5f)
+                w.y = originalPosition.y - (frustumHeight / 2.0f) + 5.5f;
         }
             
         fishPointer.transform.position = w;
