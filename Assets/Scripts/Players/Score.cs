@@ -8,18 +8,18 @@ public class Score : MonoBehaviour
     public int goal = 100;
     private int difference = 0;
 
-    public enum Team
+    public enum AnimalTeam
     {
         BEAR,
         SALMON,
-        NONE
+        BOTH
     }
 
-    public void ModifyScore(Team t, int v)
+    public void ModifyScore(AnimalTeam t, int v)
     {
-        if( t == Team.BEAR )
+        if( t == AnimalTeam.BEAR )
             difference += v;
-        else if ( t == Team.SALMON )
+        else if ( t == AnimalTeam.SALMON )
             difference -= v;
     }
 
@@ -31,13 +31,13 @@ public class Score : MonoBehaviour
         return false;
     }
 
-    public Team Winner()
+    public AnimalTeam Winner()
     {
         if( difference < 0 )
-            return Team.SALMON;
+            return AnimalTeam.SALMON;
         if( difference > 0)
-            return Team.BEAR;
+            return AnimalTeam.BEAR;
 
-        return Team.NONE;
+        return AnimalTeam.BOTH;
     }
 }

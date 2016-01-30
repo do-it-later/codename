@@ -51,13 +51,43 @@ public class GameManager : MonoBehaviour {
 
     public void EndRound()
     {
+        timer.StopTimer();
+
         //Check for a winner
-//        Team winner = score.Winner();
-//        roundWinners[round-1] = winner;
+        Score.AnimalTeam animalWinner = score.Winner();
+
+        if( animalWinner == Score.AnimalTeam.BOTH )
+        {
+            team1.Wins++;
+            team2.Wins++;
+        }
+
+        if( animalWinner == Score.AnimalTeam.BEAR && team1.AreBears ||
+            animalWinner == Score.AnimalTeam.SALMON && team2.AreBears )
+        {
+            team1.Wins++;
+        }
+        else
+        {
+            team2.Wins++;
+        }
     }
 
     public void SalmonCaught()
     {
-//        score.ModifyScore(1);
+        score.ModifyScore(Score.AnimalTeam.BEAR, 8);
+        if( score.GoalReached() )
+        {
+            EndRound();
+        }
+    }
+
+    public void SalmonFlee()
+    {
+        score.ModifyScore(Score.AnimalTeam.SALMON, 1);
+        if( score.GoalReached() )
+        {
+            EndRound();
+        }
     }
 }
