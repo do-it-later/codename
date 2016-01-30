@@ -58,4 +58,15 @@ public class InputHelper : MonoBehaviour {
 
         return angle;
     }
+
+    public float GetHorizForController(int controller)
+    {
+        return Input.GetAxis("P" + controller.ToString() + "_Horiz");
+    }
+
+    public float GetVertForController(int controller)
+    {
+        // Multiply by -1 to have the positive angle going upwards
+        return Input.GetAxis("P" + controller.ToString() + "_Vert") * -1;
+    }
 }
