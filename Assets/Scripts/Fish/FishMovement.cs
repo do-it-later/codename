@@ -31,24 +31,33 @@ public class FishMovement : MonoBehaviour
 
     void Update()
     {
+        //Time.timeScale = 0.1f;
+
         if (!hasJumped)
-        { 
-            if (Input.GetKey("a"))
-				direction.x = -strafeSpeed;
+        {
+            //if (Input.GetKey("a"))
+            //	direction.x = -strafeSpeed;
 
-            if (Input.GetKey("d"))
-				direction.x = strafeSpeed;
+            //if (Input.GetKey("d"))
+            //	direction.x = strafeSpeed;
 
-			if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.B)))
+            if (Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.B)) || Input.GetKeyDown("space"))
 			{
 				if(!hasJumped && canJump)
 				{
 					hasJumped = true;
 
-					Vector3 camera = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+                    // TODO: controller directional input
+                    //float horiz = InputHelper.instance.GetHorizForController(1) * Time.deltaTime;
+                    Vector3 mP = PerspectiveScreenToWorld();
 
-					direction = camera - transform.position;
-					direction.Normalize();
+                    //TODO: remove DEBUG
+                    GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = mP;
+
+                    direction = mP - transform.position;
+                    direction.z = -swimSpeed;
+
+                    direction.Normalize();
 				}
             }
         }
@@ -91,6 +100,17 @@ public class FishMovement : MonoBehaviour
             }
 		}
 	}
+
+    private Vector3 PerspectiveScreenToWorld()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane xy = new Plane(Vector3.forward, new Vector3(0, -Camera.main.transform.position.y, -80.0f));
+
+        float distance;
+        xy.Raycast(ray, out distance);
+
+        return ray.GetPoint(distance);
+    }
 
     private void ResetPosition()
     {
