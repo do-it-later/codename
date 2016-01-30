@@ -7,6 +7,9 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
     public const int MAX_PLAYERS = 4;
 
+    private Team team1 = new Team();
+    private Team team2 = new Team();
+
     private List<Player> playerList = new List<Player>();
     public int NumberOfPlayers { get { return playerList.Count; } }
 
@@ -31,7 +34,18 @@ public class PlayerManager : MonoBehaviour {
 
         if( FindPlayer(controller) == null )
         {
-            Player p = new Player(controller);
+            Player p;
+            if( team1.NumMembers < Team.MAX_MEMBERS )
+            {
+                p = new Player(controller, team1);
+                team1.AddMember();
+            }
+            else
+            {
+                p = new Player(controller, team2);
+                team2.AddMember();
+            }
+
             playerList.Add(p);
         }
     }
@@ -40,7 +54,11 @@ public class PlayerManager : MonoBehaviour {
     {
         Player p = FindPlayer(controller);
         if( p != null )
+        {
             playerList.Remove(p);
+
+            p.PlayerTeam.RemoveMember();
+        }
     }
 
     public Player FindPlayer(int controller)

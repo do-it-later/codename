@@ -6,7 +6,8 @@ public class Player {
     private int playerNumber;
     public int PlayerNumber { get { return playerNumber; } }
 
-    //private int teamNumber;
+    private Team playerTeam;
+    public Team PlayerTeam { get { return playerTeam; } }
 
     private Color playerColor;
     public Color PlayerColor { get { return playerColor; } }
@@ -14,9 +15,10 @@ public class Player {
     private int score;
     public int Score { get { return score; } }
 
-    public Player(int controller)
+    public Player(int controller, Team t)
     {
         playerNumber = controller;
+        playerTeam = t;
         score = 0;
     }
 
