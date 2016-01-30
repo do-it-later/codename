@@ -3,32 +3,33 @@ using System.Collections;
 
 public class FishMovement : MonoBehaviour
 {
-    private bool hasJumped;
+    //
+    float SwimSpeed = 20.0f;
+    float StrafeSpeed = 10.0f;
 
+    //
+    private bool hasJumped;
     private Rigidbody rigidBody;
 
-    // Use this for initialization
     void Start()
     {
         hasJumped = false;
         rigidBody = GetComponent<Rigidbody>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 v = this.transform.position;
 
-        v.z -= 20.0f * Time.deltaTime;
+        v.z -= SwimSpeed * Time.deltaTime;
 
         if (!hasJumped)
         { 
             if (Input.GetKey("a"))
-                v.x -= 10.0f * Time.deltaTime;
+                v.x -= StrafeSpeed * Time.deltaTime;
 
             if (Input.GetKey("d"))
-                v.x += 10.0f * Time.deltaTime;
+                v.x += StrafeSpeed * Time.deltaTime;
 
             if (Input.GetKeyDown("space"))
             {
