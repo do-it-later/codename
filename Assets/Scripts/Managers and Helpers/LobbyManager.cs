@@ -6,13 +6,14 @@ using System.Collections.Generic;
 
 public class LobbyManager : MonoBehaviour {
 
+    public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
 
     void Start()
     {
-        foreach(Image i in playerImages)
+        foreach(GameObject go in playerCharacters)
         {
-            i.enabled = false;
+            playerImages.Add( go.GetComponent<Image>() );
         }
     }
 
@@ -63,6 +64,7 @@ public class LobbyManager : MonoBehaviour {
                 {
                     PlayerManager.instance.SetNextPlayerColor(i);   
                     playerImages[i-1].color = p.PlayerColor;
+                    playerCharacters[i-1].GetComponent<Animator>().Play("Idle");
                 }
             }
         }
