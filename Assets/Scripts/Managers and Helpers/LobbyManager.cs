@@ -9,7 +9,7 @@ public class LobbyManager : MonoBehaviour {
     public List<Image> frameImages = new List<Image>();
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
-    private bool[] playersReady = new bool[] {false, true, true, true};
+    private bool[] playersReady = new bool[] {false, false, false, false};
 
 	public AudioClip music;
 	public AudioClip roar;
