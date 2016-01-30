@@ -15,7 +15,7 @@ public class Team {
         return score;
     }
 
-    public int ModifyScore(int modifyAmount)
+    public void ModifyScore(int modifyAmount)
     {
         score += modifyAmount;
     }
