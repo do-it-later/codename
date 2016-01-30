@@ -36,8 +36,8 @@ public class FishMovement : MonoBehaviour
             {
                 hasJumped = true;
 
+				rigidBody.useGravity = false;
                 rigidBody.AddForce(new Vector3(0.0f, 0.0f, JumpForce));
-                rigidBody.useGravity = false;
             }
         }
 

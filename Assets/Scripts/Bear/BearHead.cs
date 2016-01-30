@@ -29,13 +29,13 @@ public class BearHead : MonoBehaviour
 		canShoot = true;
 		flipped = !onLeft;
 
-		defaultPosition = transform.position;
+//		Time.timeScale = 0.1f;
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.GetKeyDown("space"))
+		if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.A)))
 		{
 			FireHead();
 		}
@@ -44,7 +44,7 @@ public class BearHead : MonoBehaviour
 		{
 			transform.Translate(direction * shootVelocity * Time.deltaTime);
 
-			if(transform.position.x >= 5 || transform.position.x <= -5 || transform.position.y >= 5)
+			if(transform.position.x >= 20 || transform.position.x <= -20 || transform.position.y >= 20)
 			{
 				extending = false;
 				retracting = true;
@@ -65,6 +65,7 @@ public class BearHead : MonoBehaviour
 					transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 				}
 				transform.position = defaultPosition;
+				Debug.Log(defaultPosition);
 				image.transform.Rotate(0.0f, 0.0f, -20.0f);
 				retracting = false;
 				canShoot = true;
@@ -114,17 +115,20 @@ public class BearHead : MonoBehaviour
 				}
 			}
 
-			Debug.Log(angle);
+			if(flipped)
+				angle *=  -1;
 
 			direction = new Vector3(0.0f, 1.0f, 0.0f);
 			direction = transform.rotation * direction;
-			if(flipped)
-				angle *=  -1;
 			direction.Normalize();
+
 			transform.Rotate(0, 0, angle);
 			image.transform.Rotate(0.0f, 0.0f, 20.0f);
+
 			extending = true;
 			canShoot = false;
+
+			defaultPosition = transform.position;
 		}
 	}
 }
