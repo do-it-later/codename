@@ -7,8 +7,8 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
     public const int MAX_PLAYERS = 4;
 
-    private List<int> players = new List<int>();
-    public int NumberOfPlayers { get { return players.Count; } }
+    private List<Player> playerList = new List<Player>();
+    public int NumberOfPlayers { get { return playerList.Count; } }
 
     void Awake()
     {
@@ -24,32 +24,35 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     public void AddPlayer(int controller)
     {
         if( NumberOfPlayers == MAX_PLAYERS )
             return;
 
-        if( !players.Contains(controller) )
-            players.Add(controller);
+        if( FindPlayer(controller) == null )
+        {
+            Player p = new Player(controller);
+            playerList.Add(p);
+        }
     }
 
     public void RemovePlayer(int controller)
     {
-        players.Remove(controller);
+        Player p = FindPlayer(controller);
+        if( p != null )
+            playerList.Remove(p);
     }
 
-    public bool ContainsPlayer(int controller)
+    public Player FindPlayer(int controller)
     {
-        return players.Contains(controller);
+        foreach(Player p in playerList)
+        {
+            if( p.PlayerNumber == controller )
+            {
+                return p;
+            }
+        }
+
+        return null;
     }
 }
