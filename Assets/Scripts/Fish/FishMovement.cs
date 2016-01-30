@@ -6,6 +6,7 @@ public class FishMovement : MonoBehaviour
     //
     float SwimSpeed = 20.0f;
     float StrafeSpeed = 10.0f;
+    public float JumpForce = -2000.0f;
 
     //
     private bool hasJumped;
@@ -35,7 +36,8 @@ public class FishMovement : MonoBehaviour
             {
                 hasJumped = true;
 
-                rigidBody.AddForce(new Vector3(0.0f, 500.0f, 0.0f));
+                rigidBody.AddForce(new Vector3(0.0f, 0.0f, JumpForce));
+                rigidBody.useGravity = false;
             }
         }
 
