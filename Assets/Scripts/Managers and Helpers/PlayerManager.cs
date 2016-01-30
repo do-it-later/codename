@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour {
     public const int MAX_PLAYERS = 4;
 
     private List<Player> playerList = new List<Player>();
+    public List<Player> PlayerList { get { return playerList; } }
     public int NumberOfPlayers { get { return playerList.Count; } }
 
     private Color[] colorList = new Color[]

@@ -12,6 +12,12 @@ public class Player {
     private int score;
     public int Score { get { return score; } }
 
+    private int[] roundScores = new int[4];
+    public int[] RoundScores
+    {
+        get { return roundScores; }
+    }
+
     public Player(int controller)
     {
         playerNumber = controller;
@@ -21,5 +27,10 @@ public class Player {
     public void SetColor(Color color)
     {
         playerColor = color;
+    }
+
+    public void ModifyScore(int round, int val)
+    {
+        score += val;
     }
 }

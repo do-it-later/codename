@@ -58,7 +58,7 @@ public class FishMovement : MonoBehaviour
 		if(transform.position.z <= -96)
 		{
             ResetPosition();
-            GameManager.instance.SalmonFlee();
+//            GameManager.instance.SalmonFlee();
             ObjectPool.instance.PoolObject(gameObject);
 		}
     }
@@ -72,7 +72,7 @@ public class FishMovement : MonoBehaviour
 		else if(other.tag == "Bear")
         {
             ResetPosition();
-            GameManager.instance.SalmonCaught();
+//            GameManager.instance.SalmonCaught();
             ObjectPool.instance.PoolObject(gameObject);
 			Debug.Log("YAY");
 		}
@@ -85,7 +85,7 @@ public class FishMovement : MonoBehaviour
 			canJump = false;
             if( !hasJumped )
             {
-                GameManager.instance.SalmonCrash();
+//                GameManager.instance.SalmonCrash();
                 ResetPosition();
                 ObjectPool.instance.PoolObject(gameObject);
             }
