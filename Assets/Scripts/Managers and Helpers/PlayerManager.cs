@@ -38,6 +38,18 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    void Start()
+    {
+        AddPlayer(1);
+        SetNextPlayerColor(1);
+        AddPlayer(2);
+        SetNextPlayerColor(2);
+        AddPlayer(3);
+        SetNextPlayerColor(3);
+        AddPlayer(4);
+        SetNextPlayerColor(4);
+    }
+
     public bool IsPlayerAdded(int controller)
     {
         if(FindPlayer(controller) == null)

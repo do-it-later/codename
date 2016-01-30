@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public int numFishPerRound;
+    public BearHead bear;
 
     private Timer timer;
     private bool paused;
@@ -13,7 +14,9 @@ public class GameManager : MonoBehaviour {
     private Player bearPlayer;
 
     private int[] fishCount = new int[4];
+    private float[] shootTime = new float[4];
     private bool allEmpty = false;
+    private bool gameStarted = false;
 
     void Awake()
     {
@@ -32,39 +35,45 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
-        for(int i = 0; i < fishCount.Length; ++i)
+        if( gameStarted )
         {
-            // ignore your own player
-            if(bearPlayer.PlayerNumber == i-1)
-                continue;
-
-            if(fishCount[i] > 0)
+            for(int i = 0; i < fishCount.Length; ++i)
             {
-                allEmpty = false;
-                break;
-            }
-            else
-            {
-                allEmpty = true;
-            }
-        }
+                // ignore your own player
+                if(bearPlayer.PlayerNumber == i-1)
+                    continue;
 
-        if( allEmpty )
-            EndRound();
-
-        //Add shooting logic here
-
-        for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
-        {
-            //Pause
-            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
-            {
-                if( !paused )
-                    Time.timeScale = 0;
+                if(fishCount[i] > 0)
+                {
+                    allEmpty = false;
+                    break;
+                }
                 else
-                    Time.timeScale = 1;
+                {
+                    allEmpty = true;
+                }
+            }
 
-                paused = !paused;
+            if( allEmpty )
+                EndRound();
+
+            for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
+            {
+                //Pause
+                if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
+                {
+                    if( !paused )
+                        Time.timeScale = 0;
+                    else
+                        Time.timeScale = 1;
+
+                    paused = !paused;
+                }
+
+                if( Input.GetKey( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
+                {
+                    ShootFish(i);
+                }
             }
         }
 	}
@@ -73,11 +82,17 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[round-1];
+        bearPlayer = PlayerManager.instance.PlayerList[round];
+        bear.playerNumber = bearPlayer.PlayerNumber;
 
         for(int i = 0; i < fishCount.Length; ++i)
         {
             fishCount[i] = numFishPerRound;
+        }
+
+        for(int i = 0; i < shootTime.Length; ++i)
+        {
+            shootTime[i] = 0.0f;
         }
 
         timer.ResetTimer();
@@ -96,12 +111,15 @@ public class GameManager : MonoBehaviour {
     public void StartRound()
     {
         timer.StartTimer();
+        gameStarted = true;
 
-		ObjectPool.instance.GetObject("Fish", true);
+//		ObjectPool.instance.GetObject("Fish", true);
     }
 
     public void EndRound()
     {
+        gameStarted = false;
+
         timer.StopTimer();
 
         for(int i = 0; i < fishCount.Length; ++i)
@@ -147,10 +165,14 @@ public class GameManager : MonoBehaviour {
 
     private void ShootFish(int controller)
     {
-        if( fishCount[controller-1] > 0 )
+        if( bearPlayer.PlayerNumber == controller)
+            return;
+
+        if( fishCount[controller-1] > 0 && Time.time - shootTime[controller-1] > 0.2f )
         {
-//            ObjectPool.instance.GetObject("P" + controller.ToString + "_Fish");
+            ObjectPool.instance.GetObject("P" + controller.ToString() + "_Fish");
             fishCount[controller-1]--;
+            shootTime[controller-1] = Time.time;
         }
     }
 }

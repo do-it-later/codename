@@ -13,7 +13,7 @@ GameObject:
   - 212: {fileID: 21295434}
   - 54: {fileID: 5472316}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: P4_Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   swimSpeed: 100
   strafeSpeed: 0.5
   direction: {x: 0, y: -0.4, z: -1}
-  playerNumber: 1
+  playerNumber: 4
   inControl: 0
 --- !u!135 &13541828
 SphereCollider:
@@ -114,6 +114,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: swimSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: P1_Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playerNumber
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
