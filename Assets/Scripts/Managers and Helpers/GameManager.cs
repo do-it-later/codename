@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[round];
+        bearPlayer = PlayerManager.instance.PlayerList[round-1];
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
         bodySprite.color = bearPlayer.PlayerColor;
@@ -117,8 +117,6 @@ public class GameManager : MonoBehaviour {
     {
         timer.StartTimer();
         gameStarted = true;
-
-//		ObjectPool.instance.GetObject("Fish", true);
     }
 
     public void EndRound()
