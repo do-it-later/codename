@@ -492,8 +492,9 @@ MonoBehaviour:
   bearText: {fileID: 1950952320}
   endgameCanvas: {fileID: 1928858812}
   winnerText: {fileID: 1073234775}
-  numFishPerRound: 200
+  numFishPerRound: 125
   bear: {fileID: 996419316}
+  gameRunning: 0
 --- !u!4 &404233294
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1291b2099bdfc409fb322401171c6169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 60
+  roundTime: 30
   timerText: {fileID: 126518196}
 --- !u!1 &459044605
 GameObject:
