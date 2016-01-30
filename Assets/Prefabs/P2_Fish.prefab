@@ -59,6 +59,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 2
+  sprites:
+  - {fileID: 21300000, guid: d59e3268f4618461b86f3da6d3d9da1b, type: 3}
+  - {fileID: 21300000, guid: 3983ff94e4f7d4958aecd1773f57264c, type: 3}
+  - {fileID: 21300000, guid: 375ec05b2aff144caa7154d4feed0301, type: 3}
+  - {fileID: 21300000, guid: 17e7cb097be2042258bd90884ac04ef7, type: 3}
 --- !u!114 &11461518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,10 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swimSpeed: 100
   strafeSpeed: 0.5
-  fishPointer: {fileID: 160238, guid: a66b5d3e14e1848658f7d5f7dbb7e54e, type: 2}
   direction: {x: 0, y: -0.4, z: -1}
   playerNumber: 2
-  inControl: 0
 --- !u!135 &13541828
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -114,7 +117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d447cd2d356aeb74ebdb872c7a06dcf2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d59e3268f4618461b86f3da6d3d9da1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,6 +128,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: swimSpeed
       value: 100
@@ -145,6 +152,32 @@ Prefab:
       propertyPath: fishPointer
       value: 
       objectReference: {fileID: 160238, guid: a66b5d3e14e1848658f7d5f7dbb7e54e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d59e3268f4618461b86f3da6d3d9da1b,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d59e3268f4618461b86f3da6d3d9da1b,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.x
+      value: 0.018410906
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.w
+      value: 0.9997611
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.y
+      value: 0.011778704
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.z
+      value: -0.00021690843
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106272}

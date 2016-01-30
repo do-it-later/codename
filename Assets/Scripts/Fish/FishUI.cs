@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class FishColor : MonoBehaviour {
+public class FishUI : MonoBehaviour {
 
-    public int playerNumber;    
+    public int playerNumber;
+    public List<Sprite> sprites;
 
 	// Use this for initialization
 	void Start ()
@@ -14,6 +16,7 @@ public class FishColor : MonoBehaviour {
         if( player != null )
         {
             sr.color = player.PlayerColor;
+            sr.sprite = sprites[Random.Range(0,sprites.Count)];
         }
 	}
 }

@@ -21,6 +21,8 @@ public class FishMovement : MonoBehaviour
     {
         initPosition = gameObject.transform.position;
 
+        ResetFish();
+
         fishPointer = GameObject.Find("P" + playerNumber.ToString() + "_Pointer");
     }
 
@@ -37,8 +39,7 @@ public class FishMovement : MonoBehaviour
 
 		if(transform.position.z <= -88)
 		{
-            transform.position = initPosition;
-            directionSet = false;
+            ResetFish();
             GameManager.instance.SalmonFlee(playerNumber);
             ObjectPool.instance.PoolObject(gameObject);
 		}
@@ -48,8 +49,7 @@ public class FishMovement : MonoBehaviour
 	{
 		if(other.tag == "Bear")
         {
-            transform.position = initPosition;
-            directionSet = false;
+            ResetFish();
             GameManager.instance.SalmonCaught(playerNumber);
             ObjectPool.instance.PoolObject(gameObject);
 		}
@@ -64,5 +64,14 @@ public class FishMovement : MonoBehaviour
         xy.Raycast(ray, out distance);
 
         return ray.GetPoint(distance);
+    }
+
+    private void ResetFish()
+    {
+        transform.position = initPosition + new Vector3(Random.Range(-5, 5), 0, 0);
+        var newRot = transform.rotation;
+        newRot.z = Random.Range(0, 360);
+        transform.rotation = newRot;
+        directionSet = false;
     }
 }

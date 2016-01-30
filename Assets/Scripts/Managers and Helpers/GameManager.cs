@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour {
                     paused = !paused;
                 }
 
-                if( Input.GetKey( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
+                if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
                 {
                     ShootFish(i);
                 }
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour {
         roundCanvas.enabled = true;
         roundText.text = "Round " + round;
         bearText.text = "Player " + bearPlayer.PlayerNumber.ToString() + " is the Bear!";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         roundCanvas.enabled = false;
         StartRound();
     }
