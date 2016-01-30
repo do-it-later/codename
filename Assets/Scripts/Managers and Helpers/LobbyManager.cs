@@ -9,7 +9,7 @@ public class LobbyManager : MonoBehaviour {
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
     private Transform canvasTransform;
-    private bool[] playersReady = new bool[] {false, false, false, false};
+    private bool[] playersReady = new bool[] {false, true, true, true};
 
     void Start()
     {
@@ -43,13 +43,6 @@ public class LobbyManager : MonoBehaviour {
 
                     // Swap arrows to OK
                     canvasTransform.GetChild(i - 1).Find("OK").GetComponent<Image>().enabled = true;
-
-                    // Change back button to start button
-//                    if (playersReady == PlayerManager.MAX_PLAYERS)
-//                    {
-//                        canvasTransform.Find("Next").Find("Back Button").GetComponent<Image>().enabled = false;
-//                        canvasTransform.Find("Next").Find("Start Button").GetComponent<Image>().enabled = true;
-//                    }
                 }
                 // If player is already ready, remove them
                 else
@@ -58,9 +51,6 @@ public class LobbyManager : MonoBehaviour {
 
                     // Swap arrows to OK
                     canvasTransform.GetChild(i - 1).GetChild(0).GetComponent<Image>().enabled = false;
-
-                    canvasTransform.Find("Next").Find("Back Button").GetComponent<Image>().enabled = true;
-                    canvasTransform.Find("Next").Find("Start Button").GetComponent<Image>().enabled = false;
                 }
 
                 playersReady[i-1] = !playersReady[i-1];

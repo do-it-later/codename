@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
     {
         round++;
         allEmpty = false;
-        bearPlayer = PlayerManager.instance.PlayerList[round-1];
+        bearPlayer = PlayerManager.instance.PlayerList[round];
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
         bodySprite.color = bearPlayer.PlayerColor;

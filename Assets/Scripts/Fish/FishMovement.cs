@@ -63,10 +63,10 @@ public class FishMovement : MonoBehaviour
 
 		this.transform.position += direction * Time.deltaTime * swimSpeed;
 
-		if(transform.position.z <= -96)
+		if(transform.position.z <= -88)
 		{
             ResetPosition();
-//            GameManager.instance.SalmonFlee();
+            GameManager.instance.SalmonFlee(playerNumber);
             ObjectPool.instance.PoolObject(gameObject);
 		}
     }

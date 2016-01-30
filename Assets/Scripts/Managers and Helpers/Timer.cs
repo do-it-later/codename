@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour {
                 GameManager.instance.EndRound();
             }
 
-            timerText.text = Mathf.Ceil(remainingTime).ToString();
+            timerText.text = "Time Left: " + Mathf.Ceil(remainingTime).ToString();
         }
     }
 
