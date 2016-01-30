@@ -8,6 +8,7 @@ public class LobbyManager : MonoBehaviour {
 
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
+    private Transform canvasTransform;
 
     void Start()
     {
@@ -15,13 +16,15 @@ public class LobbyManager : MonoBehaviour {
         {
             playerImages.Add( go.GetComponent<Image>() );
         }
+
+        canvasTransform = GameObject.Find("Canvas").transform;
     }
 
 	// Update is called once per frame
 	void Update () {
         for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
         {
-            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
+            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) || Input.GetKeyDown("space") )
             {
                 // If player is not readied up yet
                 if(!PlayerManager.instance.IsPlayerAdded(i))
@@ -29,23 +32,44 @@ public class LobbyManager : MonoBehaviour {
                     Debug.Log("Player " + i.ToString() + " readied up.");
                     if (PlayerManager.instance.AddPlayer(i))
                     {
-                        playerImages[i - 1].enabled = true;
+                        //playerImages[i - 1].enabled = true;
 
                         Player p = PlayerManager.instance.FindPlayer(i);
                         if (p != null)
                         {
                             playerImages[i - 1].color = p.PlayerColor;
                         }
+
+                        // Swap arrows to OK
+                        canvasTransform.GetChild(i - 1).Find("OK").GetComponent<Image>().enabled = true;
+                        canvasTransform.GetChild(i - 1).Find("Right Arrow").GetComponent<Image>().enabled = false;
+                        canvasTransform.GetChild(i - 1).Find("Left Arrow").GetComponent<Image>().enabled = false;
+
+                        // Change back button to start button
+                        if (PlayerManager.instance.NumberOfPlayers == PlayerManager.MAX_PLAYERS)
+                        {
+                            canvasTransform.Find("Next").Find("Back Button").GetComponent<Image>().enabled = false;
+                            canvasTransform.Find("Next").Find("Start Button").GetComponent<Image>().enabled = true;
+                        }
                     }
                 }
                 // If player is already ready, remove them
                 else
                 {
-                    Debug.Log("Player " + i.ToString() + " unreadied.");
                     if (PlayerManager.instance.RemovePlayer(i))
                     {
-                        playerImages[i - 1].enabled = false;
+                        Debug.Log("Player " + i.ToString() + " unreadied.");
+
+                        //playerImages[i - 1].enabled = false;
                         playerImages[i - 1].color = Color.white;
+
+                        // Swap arrows to OK
+                        canvasTransform.GetChild(i - 1).GetChild(0).GetComponent<Image>().enabled = false;
+                        canvasTransform.GetChild(i - 1).GetChild(1).GetComponent<Image>().enabled = true;
+                        canvasTransform.GetChild(i - 1).GetChild(2).GetComponent<Image>().enabled = true;
+
+                        canvasTransform.Find("Next").Find("Back Button").GetComponent<Image>().enabled = true;
+                        canvasTransform.Find("Next").Find("Start Button").GetComponent<Image>().enabled = false;
                     }
                 }
             }
