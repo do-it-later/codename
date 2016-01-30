@@ -49,13 +49,12 @@ public class FishMovement : MonoBehaviour
 
                     // TODO: controller directional input
                     //float horiz = InputHelper.instance.GetHorizForController(1) * Time.deltaTime;
-                    Vector3 mP = PerspectiveScreenToWorld();
+                    Vector3 screenWorldCoordinates = PerspectiveScreenToWorld();
 
                     //TODO: remove DEBUG
-                    GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = mP;
+                    //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = mP;
 
-                    direction = mP - transform.position;
-                    direction.z = -swimSpeed;
+                    direction = screenWorldCoordinates - transform.position;
 
                     direction.Normalize();
 				}
