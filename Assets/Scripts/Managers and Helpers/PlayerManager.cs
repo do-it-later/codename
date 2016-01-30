@@ -147,6 +147,7 @@ public class PlayerManager : MonoBehaviour {
             if( p.Score > highscore )
             {
                 winner = p;
+                highscore = p.Score;
             }
         }
 

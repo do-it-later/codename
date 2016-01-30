@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     private int[] fishCount = new int[4];
     private float[] shootTime = new float[4];
     private bool allEmpty = false;
-    private bool gameRunning = false;
+    public bool gameRunning = false;
 
     void Awake()
     {

@@ -46,7 +46,8 @@ public class BearHead : MonoBehaviour
 	{
 		if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.A)))
 		{
-			FireHead();
+            if( GameManager.instance.gameRunning)
+			    FireHead();
 		}
 
 		if(extending)

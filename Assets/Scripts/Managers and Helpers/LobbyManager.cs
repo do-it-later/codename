@@ -9,7 +9,7 @@ public class LobbyManager : MonoBehaviour {
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
     private Transform canvasTransform;
-    private bool[] playersReady = new bool[] {false, true, true, true};
+    private bool[] playersReady = new bool[] {false, false, false, false};
 
     void Start()
     {

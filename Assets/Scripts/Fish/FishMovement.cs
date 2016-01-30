@@ -80,7 +80,7 @@ public class FishMovement : MonoBehaviour
 		else if(other.tag == "Bear")
         {
             ResetPosition();
-//            GameManager.instance.SalmonCaught();
+            GameManager.instance.SalmonCaught(playerNumber);
             ObjectPool.instance.PoolObject(gameObject);
 			Debug.Log("YAY");
 		}
