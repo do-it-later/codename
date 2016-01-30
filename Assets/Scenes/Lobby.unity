@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd22afdad5ed460dbcb1153a1187771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   frameImages:
   - {fileID: 1383848401}
   - {fileID: 1029845327}
@@ -795,7 +795,9 @@ MonoBehaviour:
   - {fileID: 1980287575}
   playerImages: []
   music: {fileID: 8300000, guid: 6504b9e94fd6c475692d6042147b8cde, type: 3}
-  roar: {fileID: 8300000, guid: 1501fee5080f048a2bfb7a4454044e04, type: 3}
+  roarList:
+  - {fileID: 8300000, guid: d8c4cb6a6eab840a6b3d0c3ecceecb13, type: 3}
+  - {fileID: 8300000, guid: 1501fee5080f048a2bfb7a4454044e04, type: 3}
 --- !u!4 &1132890805
 Transform:
   m_ObjectHideFlags: 0

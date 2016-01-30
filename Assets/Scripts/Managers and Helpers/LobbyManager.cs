@@ -14,7 +14,7 @@ public class LobbyManager : MonoBehaviour {
     private bool[] playersReady = new bool[] {false, false, false, false};
 
 	public AudioClip music;
-	public AudioClip roar;
+	public List<AudioClip> roarList;
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class LobbyManager : MonoBehaviour {
                 if(!playersReady[i-1])
                 {
                     Debug.Log("Player " + i.ToString() + " readied up.");
-					SoundManager.instance.PlaySingleSfx(roar);
+					SoundManager.instance.PlaySingleSfx(roarList[Random.Range(0, roarList.Count)]);
 
                     // Swap arrows to OK
                     frameImages[i-1].color = new Color32(133,255,183,255);

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     private List<int> bearTurns = new List<int>();
 
 	public AudioClip music;
-	public AudioClip chomp;
+	public List<AudioClip> chompList;
 
     void Awake()
     {
@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour {
     {
         if( gameRunning )
         {
-			SoundManager.instance.PlaySingleSfx(chomp);
+			SoundManager.instance.PlaySingleSfx(chompList[Random.Range(0, chompList.Count)]);
 
             // Player who gets caught loses points
             var p = PlayerManager.instance.FindPlayer(controller);

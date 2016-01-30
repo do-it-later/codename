@@ -122,7 +122,7 @@ public class BearHead : MonoBehaviour
 			}
 			else if(angle > 180 && angle < 270)
 			{
-				angle = 269;
+				angle = 271;
 			}
 
 			if(angle > 0 && angle <= 90)

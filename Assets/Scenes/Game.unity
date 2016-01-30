@@ -679,7 +679,10 @@ MonoBehaviour:
   bear: {fileID: 996419316}
   gameRunning: 0
   music: {fileID: 8300000, guid: 39ad5d99d6dab474ab89008026ae84bb, type: 3}
-  chomp: {fileID: 8300000, guid: fd9df00fb0d37486faf01caa715fabf5, type: 3}
+  chompList:
+  - {fileID: 8300000, guid: f2629938d6f144d8e9aef340a339f407, type: 3}
+  - {fileID: 8300000, guid: fd9df00fb0d37486faf01caa715fabf5, type: 3}
+  - {fileID: 8300000, guid: ac24df81408cb491a8b2e39cf0ee5452, type: 3}
 --- !u!4 &404233294
 Transform:
   m_ObjectHideFlags: 0
@@ -3229,7 +3232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1928858810
 MonoBehaviour:
   m_ObjectHideFlags: 0
