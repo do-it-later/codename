@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public int numFishPerRound;
 
     private Timer timer;
+    private bool paused;
     private int round;
     private Player bearPlayer;
 
@@ -52,6 +53,20 @@ public class GameManager : MonoBehaviour {
             EndRound();
 
         //Add shooting logic here
+
+        for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
+        {
+            //Pause
+            if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
+            {
+                if( !paused )
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = 1;
+
+                paused = !paused;
+            }
+        }
 	}
 
     private void PrepareNextRound()
