@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -12,6 +13,18 @@ public class PlayerManager : MonoBehaviour {
 
     private List<Player> playerList = new List<Player>();
     public int NumberOfPlayers { get { return playerList.Count; } }
+
+    private Color[] colorList = new Color[]
+    {
+        new Color32(255,255,255,255),
+        new Color32(255,133,133,255),
+        new Color32(255,242,133,255),
+        new Color32(133,255,144,255),
+        new Color32(133,235,255,255),
+        new Color32(208,133,255,255)
+    };
+
+    private int[] colorChoices = new int[]{ -1,-1,-1,-1 };
 
     void Awake()
     {
@@ -27,38 +40,45 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public void AddPlayer(int controller)
+    public bool AddPlayer(int controller)
     {
         if( NumberOfPlayers == MAX_PLAYERS )
-            return;
+            return false;
 
         if( FindPlayer(controller) == null )
         {
             Player p;
-            if( team1.NumMembers < Team.MAX_MEMBERS )
+            if( controller <= 2 )
             {
                 p = new Player(controller, team1);
-                team1.AddMember();
             }
             else
             {
                 p = new Player(controller, team2);
-                team2.AddMember();
             }
 
             playerList.Add(p);
+            SetNextPlayerColor(controller);
         }
+        else
+        {
+            return false;
+        }
+
+        return true;
     }
 
-    public void RemovePlayer(int controller)
+    public bool RemovePlayer(int controller)
     {
         Player p = FindPlayer(controller);
         if( p != null )
         {
             playerList.Remove(p);
+            colorChoices[controller-1] = -1;
 
-            p.PlayerTeam.RemoveMember();
+            return true;
         }
+        return false;
     }
 
     public Player FindPlayer(int controller)
@@ -72,5 +92,40 @@ public class PlayerManager : MonoBehaviour {
         }
 
         return null;
+    }
+
+    public void SetNextPlayerColor(int controller)
+    {
+        int newChoice;
+        if( colorChoices[controller-1] == -1 )
+            newChoice = controller-1;
+        else
+            newChoice = (colorChoices[controller-1] + 1) % colorList.Length;
+
+        while( true )
+        {
+            bool found = false;
+            foreach(int i in colorChoices)
+            {
+                if( newChoice == i )
+                {
+                    newChoice++;
+                    found = true;
+                    break;
+                }
+            }
+
+            if( !found )
+            {
+                Player p = FindPlayer(controller);
+                if( p != null )
+                {
+                    p.SetColor(colorList[newChoice]);
+                    colorChoices[controller-1] = newChoice;
+                }
+                return;
+            }
+        }
+
     }
 }
