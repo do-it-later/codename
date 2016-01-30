@@ -18,6 +18,8 @@ public class FishMovement : MonoBehaviour
     private bool hasJumped;
 	private bool canJump;
 
+    private GameObject fishPointer;
+
     void Start()
     {
         initPosition = gameObject.transform.position;
@@ -27,6 +29,8 @@ public class FishMovement : MonoBehaviour
 		canJump = false;
 
 		direction.Normalize();
+
+        fishPointer = GameObject.Find("Fish Pointer");
     }
 
     void Update()
@@ -35,26 +39,17 @@ public class FishMovement : MonoBehaviour
 
         if (!hasJumped)
         {
-            //if (Input.GetKey("a"))
-            //	direction.x = -strafeSpeed;
-
-            //if (Input.GetKey("d"))
-            //	direction.x = strafeSpeed;
-
             if (Input.GetKeyDown(InputHelper.instance.GetInputButtonString(playerNumber, InputHelper.Button.B)) || Input.GetKeyDown("space"))
 			{
 				if(!hasJumped && canJump)
 				{
 					hasJumped = true;
 
-                    // TODO: controller directional input
-                    //float horiz = InputHelper.instance.GetHorizForController(1) * Time.deltaTime;
-                    Vector3 screenWorldCoordinates = PerspectiveScreenToWorld();
-
                     //TODO: remove DEBUG
                     //GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = mP;
 
-                    direction = screenWorldCoordinates - transform.position;
+                    //direction = PerspectiveScreenToWorld() - transform.position;
+                    direction = fishPointer.transform.position - transform.position;
 
                     direction.Normalize();
 				}
