@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 public class LobbyManager : MonoBehaviour {
 
+    public List<Image> frameImages = new List<Image>();
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
-    private Transform canvasTransform;
     private bool[] playersReady = new bool[] {false, true, true, true};
 
 	public AudioClip music;
@@ -22,8 +22,6 @@ public class LobbyManager : MonoBehaviour {
         {
             playerImages.Add( go.GetComponent<Image>() );
         }
-
-        canvasTransform = GameObject.Find("Canvas").transform;
     }
 
 	// Update is called once per frame
@@ -48,7 +46,7 @@ public class LobbyManager : MonoBehaviour {
 					SoundManager.instance.PlaySingleSfx(roar);
 
                     // Swap arrows to OK
-                    canvasTransform.GetChild(i - 1).Find("OK").GetComponent<Image>().enabled = true;
+                    frameImages[i-1].color = new Color32(133,255,183,255);
                 }
                 // If player is already ready, remove them
                 else
@@ -56,7 +54,7 @@ public class LobbyManager : MonoBehaviour {
                     Debug.Log("Player " + i.ToString() + " unreadied.");
 
                     // Swap arrows to OK
-                    canvasTransform.GetChild(i - 1).GetChild(0).GetComponent<Image>().enabled = false;
+                    frameImages[i-1].color = Color.white;
                 }
 
                 playersReady[i-1] = !playersReady[i-1];
