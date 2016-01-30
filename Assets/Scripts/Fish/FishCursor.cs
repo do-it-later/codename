@@ -19,11 +19,12 @@ public class FishCursor : MonoBehaviour
     void Start()
     {
         fishPointer = transform;
-        originalPosition = fishPointer.position;
+        originalPosition = new Vector3(0, 16, -86);
 
         // Distance between bear and camera
-		distanceToPlayArea = Vector3.Distance(GameObject.Find("Bear Left").transform.position, Camera.main.transform.position);
-		distanceToPlayArea = 16.0f; // TODO: remove hardcoded values
+//		distanceToPlayArea = Vector3.Distance(GameObject.Find("Bear Left").transform.position, Camera.main.transform.position);
+//		distanceToPlayArea = 16.0f; // TODO: remove hardcoded values
+        distanceToPlayArea = Mathf.Abs(Camera.main.transform.position.z - GameObject.Find("Bear Left").transform.position.z);
 
         frustumHeight = 2.0f * distanceToPlayArea * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
 
@@ -46,19 +47,19 @@ public class FishCursor : MonoBehaviour
         {
             w.x += horizontal * FishPointerSpeed * Time.deltaTime;
 
-            if(w.x > originalPosition.x + (frustumWidth / 2.0f) - 3.5f)
-				w.x = originalPosition.x + (frustumWidth / 2.0f) - 3.5f;
+            if(w.x > originalPosition.x + (frustumWidth / 2.0f) - 3.8f)
+				w.x = originalPosition.x + (frustumWidth / 2.0f) - 3.8f;
 
-             if(w.x <= originalPosition.x - (frustumWidth / 2.0f) + 3.5f)
-                w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.5f;
+             if(w.x <= originalPosition.x - (frustumWidth / 2.0f) + 3.8f)
+                w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.8f;
         }
 
         if (!(vertical <= ControllerErrorThreshold && vertical >= -ControllerErrorThreshold))
         {
             w.y += vertical * FishPointerSpeed * Time.deltaTime;
 
-            if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.5f)
-                w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.5f;
+            if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.8f)
+                w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.8f;
 
             if (w.y <= originalPosition.y - (frustumHeight / 2.0f) + 5.5f)
                 w.y = originalPosition.y - (frustumHeight / 2.0f) + 5.5f;
