@@ -54,8 +54,6 @@ public class BearHead : MonoBehaviour
 				canShoot = true;
 			}
 		}
-
-		Debug.Log(transform.up);
 	}
 
 	void FireHead()
