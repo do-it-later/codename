@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class LobbyManager : MonoBehaviour {
 
+    public bool debug = false;
+
     public List<Image> frameImages = new List<Image>();
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
@@ -16,6 +18,13 @@ public class LobbyManager : MonoBehaviour {
 
     void Start()
     {
+        if(debug)
+        {
+            playersReady[1] = true;
+            playersReady[2] = true;
+            playersReady[3] = true;
+        }
+
 		SoundManager.instance.PlayLoopedMusic(music);
 
         foreach(GameObject go in playerCharacters)
