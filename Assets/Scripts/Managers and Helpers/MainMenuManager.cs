@@ -6,6 +6,8 @@ public class MainMenuManager : MonoBehaviour
 {
 	public GameObject animationObj;
 
+	public AudioClip roar;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -30,7 +32,8 @@ public class MainMenuManager : MonoBehaviour
 
 	IEnumerator PlayAnimation()
 	{
-		animationObj.GetComponent<Animator>().Play("Start Screen");
+		SoundManager.instance.PlaySingleSfx(roar);
+		GetComponent<Animation>().GetComponent<Animator>().Play("Start Screen");
 		yield return 0;
 		yield return new WaitForSeconds(animationObj.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
 		animationObj.GetComponent<Animator>().Play("Idle");

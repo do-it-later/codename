@@ -238,6 +238,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1001 &485448565
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &522581695
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +670,8 @@ MonoBehaviour:
   - {fileID: 2009402790}
   - {fileID: 1980287575}
   playerImages: []
+  music: {fileID: 8300000, guid: 6504b9e94fd6c475692d6042147b8cde, type: 3}
+  roar: {fileID: 8300000, guid: 1501fee5080f048a2bfb7a4454044e04, type: 3}
 --- !u!4 &1132890805
 Transform:
   m_ObjectHideFlags: 0

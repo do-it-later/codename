@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour {
 
     private List<int> bearTurns = new List<int>();
 
+	public AudioClip music;
+	public AudioClip chomp;
+
     void Awake()
     {
         instance = this;
@@ -55,6 +58,8 @@ public class GameManager : MonoBehaviour {
         }
 
         PrepareNextRound();
+
+		SoundManager.instance.PlayLoopedMusic(music);
     }
 
 	// Update is called once per frame
@@ -192,6 +197,8 @@ public class GameManager : MonoBehaviour {
     {
         if( gameRunning )
         {
+			SoundManager.instance.PlaySingleSfx(chomp);
+
             // Player who gets caught loses points
             var p = PlayerManager.instance.FindPlayer(controller);
             if( p != null )

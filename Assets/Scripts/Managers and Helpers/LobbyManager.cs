@@ -9,10 +9,15 @@ public class LobbyManager : MonoBehaviour {
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
     private Transform canvasTransform;
-    private bool[] playersReady = new bool[] {false, false, false, false};
+    private bool[] playersReady = new bool[] {false, true, true, true};
+
+	public AudioClip music;
+	public AudioClip roar;
 
     void Start()
     {
+		SoundManager.instance.PlayLoopedMusic(music);
+
         foreach(GameObject go in playerCharacters)
         {
             playerImages.Add( go.GetComponent<Image>() );
@@ -40,6 +45,7 @@ public class LobbyManager : MonoBehaviour {
                 if(!playersReady[i-1])
                 {
                     Debug.Log("Player " + i.ToString() + " readied up.");
+					SoundManager.instance.PlaySingleSfx(roar);
 
                     // Swap arrows to OK
                     canvasTransform.GetChild(i - 1).Find("OK").GetComponent<Image>().enabled = true;

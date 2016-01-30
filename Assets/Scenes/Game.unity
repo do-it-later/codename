@@ -495,6 +495,8 @@ MonoBehaviour:
   numFishPerRound: 125
   bear: {fileID: 996419316}
   gameRunning: 0
+  music: {fileID: 8300000, guid: 39ad5d99d6dab474ab89008026ae84bb, type: 3}
+  chomp: {fileID: 8300000, guid: fd9df00fb0d37486faf01caa715fabf5, type: 3}
 --- !u!4 &404233294
 Transform:
   m_ObjectHideFlags: 0
