@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour {
                 {
                     if( gameEnded )
                     {
-                        SceneManager.LoadScene("Lobby");
+                        SceneManager.LoadScene("Menu");
                     }
                     else
                     {
