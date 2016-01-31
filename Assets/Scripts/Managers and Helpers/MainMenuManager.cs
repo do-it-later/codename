@@ -19,6 +19,8 @@ public class MainMenuManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		SoundManager.instance.StopMusic();
+
 		for(int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i)
 		{
 			if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START)) && mainImage.activeSelf)
