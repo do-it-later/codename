@@ -96,7 +96,7 @@ public class LobbyManager : MonoBehaviour {
         {
             if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
             {
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene("Controls");
             }
         }
 	}
