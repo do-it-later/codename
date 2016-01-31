@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd22afdad5ed460dbcb1153a1187771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   frameImages:
   - {fileID: 1383848401}
   - {fileID: 1029845327}

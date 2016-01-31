@@ -78,6 +78,14 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
+        for(int i = 0; i < FishRemainingTexts.Count; ++i)
+        {
+            if( bear.playerNumber - 1 == i)
+                FishRemainingTexts[i].text = "ROAR";
+            else
+                FishRemainingTexts[i].text = fishCount[i].ToString();
+        }
+
         if( gameRunning || gameEnded )
         {
             for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
@@ -120,14 +128,6 @@ public class GameManager : MonoBehaviour {
         endgameCanvas.enabled = false;
         UICanvas.enabled = false;
         totalFishLeft = numFishPerRound * 3;
-
-        for(int i = 0; i < FishRemainingTexts.Count; ++i)
-        {
-            if( bear.playerNumber - 1 == i)
-                FishRemainingTexts[i].text = "ROAR";
-            else
-                FishRemainingTexts[i].text = fishCount[i].ToString();
-        }
 
         for(int i = 0; i < cursors.Count; ++i)
         {
