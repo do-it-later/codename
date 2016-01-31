@@ -12,7 +12,8 @@ public class InputHelper : MonoBehaviour {
         B = 1,
         X = 2,
         Y = 3,
-        START = 7
+        START = 7,
+		SELECT = 6
     }
     #elif UNITY_STANDALONE_OSX
     public enum Button
@@ -21,7 +22,8 @@ public class InputHelper : MonoBehaviour {
         B = 17,
         X = 18,
         Y = 19,
-        START = 9
+        START = 9,
+		SELECT = 10
     }
     #endif
 

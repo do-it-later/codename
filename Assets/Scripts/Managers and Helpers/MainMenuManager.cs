@@ -27,6 +27,10 @@ public class MainMenuManager : MonoBehaviour
 			{
 				StartCoroutine(PlayAnimation());
 			}
+			else if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.SELECT)))
+			{
+				Debug.Log("OPEN");
+			}
 		}
 	}
 
