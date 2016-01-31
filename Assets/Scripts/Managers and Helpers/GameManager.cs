@@ -10,17 +10,19 @@ public class GameManager : MonoBehaviour {
     public SpriteRenderer headSprite;
     public SpriteRenderer bodySprite;
     public List<GameObject> cursors;
+        
+    public List<Sprite> PlayerImages;
 
-    public List<Text> FishPlayerText;
+    public List<Image> FishPlayerImages;
     public List<Text> FishRemainingTexts;
     public List<Image> RoarImages;
+    public GameObject roundBear;
 
     public Canvas UICanvas;
     public Canvas roundCanvas;
-    public Text bearText;
+    public Image bearImage;
 
     public Canvas endgameCanvas;
-    public Text winnerText;
 
     public int numFishPerRound;
     public BearHead bear;
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour {
             Player p = PlayerManager.instance.FindPlayer(i+1);
 
             if( p != null )
-                FishPlayerText[i].color = p.PlayerColor;
+                FishPlayerImages[i].color = p.PlayerColor;
         }
 
         PrepareNextRound();
@@ -167,9 +169,10 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator roundStartCoroutine()
     {
-        //TODO: Display banner with round
         roundCanvas.enabled = true;
-        bearText.text = "Player " + bearPlayer.PlayerNumber.ToString() + " is the Bear!";
+        bearImage.sprite = PlayerImages[bearPlayer.PlayerNumber-1];
+        roundBear.GetComponent<Image>().color = bearPlayer.PlayerColor;
+        roundBear.GetComponent<Animator>().Play("Idle");
         yield return new WaitForSeconds(4);
         roundCanvas.enabled = false;
         StartRound();
@@ -215,8 +218,6 @@ public class GameManager : MonoBehaviour {
         gameEnded = true;
 
 		SoundManager.instance.PlaySingleSfx(playerWinsAudio[p.PlayerNumber - 1]);
-
-        winnerText.text = "Winner: P" + p.PlayerNumber.ToString();
     }
 
     public void SalmonFlee(int controller)
@@ -244,7 +245,7 @@ public class GameManager : MonoBehaviour {
                 p.ModifyScore(round-1, -2);
             }
 
-            bearPlayer.ModifyScore(round-1, 2);
+            bearPlayer.ModifyScore(round-1, 5);
         }
     }
 
