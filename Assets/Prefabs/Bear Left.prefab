@@ -155,8 +155,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 5}
-  m_Center: {x: 0, y: 0, z: 2.5}
+  m_Size: {x: 1, y: 1, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11491950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,8 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e045867a25f264f7cb7996d0d2bf3ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bearHead: {fileID: 436826}
-  bearBody: {fileID: 464500}
 --- !u!212 &21224706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -294,6 +292,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

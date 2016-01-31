@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public List<Image> RoarImages;
     public GameObject roundBear;
 
+	public Canvas pausedCanvas;
     public Canvas UICanvas;
     public Canvas roundCanvas;
     public Image bearImage;
@@ -109,15 +110,20 @@ public class GameManager : MonoBehaviour {
                 {
                     if( gameEnded )
                     {
-                        Debug.Log("Hello");
                         SceneManager.LoadScene("Lobby");
                     }
                     else
                     {
                         if( !paused )
+						{
                             Time.timeScale = 0;
+							pausedCanvas.enabled = true;
+						}
                         else
+						{
                             Time.timeScale = 1;
+							pausedCanvas.enabled = false;
+						}
 
                         paused = !paused;
                     }
@@ -143,6 +149,7 @@ public class GameManager : MonoBehaviour {
         roundCanvas.enabled = false;
         endgameCanvas.enabled = false;
         UICanvas.enabled = false;
+		pausedCanvas.enabled = false;
         totalFishLeft = numFishPerRound * 3;
 
         for(int i = 0; i < PlayerManager.MAX_PLAYERS; ++i)

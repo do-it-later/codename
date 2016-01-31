@@ -27,7 +27,7 @@ public class MainMenuManager : MonoBehaviour
 
 		for(int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i)
 		{
-			if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START)))
+			if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START)) && mainImage.activeSelf)
 			{
 				StartCoroutine(PlayAnimation());
 			}
