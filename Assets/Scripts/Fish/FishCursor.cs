@@ -39,32 +39,35 @@ public class FishCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 w = fishPointer.position;
-        float horizontal = InputHelper.instance.GetHorizForController(ControllerNumber);
-        float vertical = InputHelper.instance.GetVertForController(ControllerNumber);
-
-        if (!(horizontal <= ControllerErrorThreshold && horizontal >= -ControllerErrorThreshold))
+        if( GameManager.instance.gameRunning )
         {
-            w.x += horizontal * FishPointerSpeed * Time.deltaTime;
+            Vector3 w = fishPointer.position;
+            float horizontal = InputHelper.instance.GetHorizForController(ControllerNumber);
+            float vertical = InputHelper.instance.GetVertForController(ControllerNumber);
 
-            if(w.x > originalPosition.x + (frustumWidth / 2.0f) - 3.8f)
-				w.x = originalPosition.x + (frustumWidth / 2.0f) - 3.8f;
+            if (!(horizontal <= ControllerErrorThreshold && horizontal >= -ControllerErrorThreshold))
+            {
+                w.x += horizontal * FishPointerSpeed * Time.deltaTime;
 
-             if(w.x <= originalPosition.x - (frustumWidth / 2.0f) + 3.8f)
-                w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.8f;
+                if(w.x > originalPosition.x + (frustumWidth / 2.0f) - 3.8f)
+    				w.x = originalPosition.x + (frustumWidth / 2.0f) - 3.8f;
+
+                 if(w.x <= originalPosition.x - (frustumWidth / 2.0f) + 3.8f)
+                    w.x = originalPosition.x - (frustumWidth / 2.0f) + 3.8f;
+            }
+
+            if (!(vertical <= ControllerErrorThreshold && vertical >= -ControllerErrorThreshold))
+            {
+                w.y += vertical * FishPointerSpeed * Time.deltaTime;
+
+                if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.8f)
+                    w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.8f;
+
+                if (w.y <= originalPosition.y - (frustumHeight / 2.0f) + 5.5f)
+                    w.y = originalPosition.y - (frustumHeight / 2.0f) + 5.5f;
+            }
+                
+            fishPointer.transform.position = w;
         }
-
-        if (!(vertical <= ControllerErrorThreshold && vertical >= -ControllerErrorThreshold))
-        {
-            w.y += vertical * FishPointerSpeed * Time.deltaTime;
-
-            if (w.y > originalPosition.y + (frustumHeight / 2.0f) - 0.8f)
-                w.y = originalPosition.y + (frustumHeight / 2.0f) - 0.8f;
-
-            if (w.y <= originalPosition.y - (frustumHeight / 2.0f) + 5.5f)
-                w.y = originalPosition.y - (frustumHeight / 2.0f) + 5.5f;
-        }
-            
-        fishPointer.transform.position = w;
     }
 }

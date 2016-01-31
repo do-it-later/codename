@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public SpriteRenderer bodySprite;
     public List<GameObject> cursors;
 
+    public Canvas UICanvas;
     public Canvas roundCanvas;
     public Text roundText;
     public Text bearText;
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour {
         bodySprite.color = bearPlayer.PlayerColor;
         roundCanvas.enabled = false;
         endgameCanvas.enabled = false;
+        UICanvas.enabled = false;
 
         for(int i = 0; i < cursors.Count; ++i)
         {
@@ -167,6 +169,7 @@ public class GameManager : MonoBehaviour {
     {
         timer.StartTimer();
         gameRunning = true;
+        UICanvas.enabled = true;
     }
 
     public void EndRound()
@@ -233,7 +236,7 @@ public class GameManager : MonoBehaviour {
         if( bearPlayer.PlayerNumber == controller)
             return;
 
-        if( fishCount[controller-1] > 0 && Time.time - shootTime[controller-1] > 0.2f )
+        if( fishCount[controller-1] > 0 )
         {
             ObjectPool.instance.GetObject("P" + controller.ToString() + "_Fish");
             fishCount[controller-1]--;
