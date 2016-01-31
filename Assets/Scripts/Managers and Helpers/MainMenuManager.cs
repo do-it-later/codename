@@ -8,6 +8,9 @@ public class MainMenuManager : MonoBehaviour
 
 	public AudioClip roar;
 
+	public GameObject mainImage;
+	public GameObject creditsImage;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -18,7 +21,8 @@ public class MainMenuManager : MonoBehaviour
 	{
 		if(Input.GetKeyDown("space"))
 		{
-			StartCoroutine(PlayAnimation());
+			mainImage.SetActive(false);
+			creditsImage.SetActive(true);
 		}
 
 		for(int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i)
@@ -27,9 +31,15 @@ public class MainMenuManager : MonoBehaviour
 			{
 				StartCoroutine(PlayAnimation());
 			}
-			else if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.SELECT)))
+			else if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.SELECT)) && mainImage.activeSelf)
 			{
-				Debug.Log("OPEN");
+				mainImage.SetActive(false);
+				creditsImage.SetActive(true);
+			}
+			else if(Input.GetKeyDown(InputHelper.instance.GetInputButtonString(i, InputHelper.Button.B)) && creditsImage.activeSelf)
+			{
+				mainImage.SetActive(true);
+				creditsImage.SetActive(false);
 			}
 		}
 	}
