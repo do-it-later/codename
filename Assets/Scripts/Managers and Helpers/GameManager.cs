@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
     private float[] shootTime = new float[4];
     private bool allEmpty = false;
     public bool gameRunning = false;
+    private bool gameEnded = false;
 
     private List<int> bearTurns = new List<int>();
 
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
-        if( gameRunning )
+        if( gameRunning || gameEnded )
         {
             for(int i = 0; i < fishCount.Length; ++i)
             {
@@ -101,12 +103,20 @@ public class GameManager : MonoBehaviour {
                 //Pause
                 if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.START) ) )
                 {
-                    if( !paused )
-                        Time.timeScale = 0;
+                    if( gameEnded )
+                    {
+                        Debug.Log("Hello");
+                        SceneManager.LoadScene("Lobby");
+                    }
                     else
-                        Time.timeScale = 1;
+                    {
+                        if( !paused )
+                            Time.timeScale = 0;
+                        else
+                            Time.timeScale = 1;
 
-                    paused = !paused;
+                        paused = !paused;
+                    }
                 }
 
                 if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.A) ) )
@@ -160,7 +170,7 @@ public class GameManager : MonoBehaviour {
         roundCanvas.enabled = true;
         roundText.text = "Round " + round;
         bearText.text = "Player " + bearPlayer.PlayerNumber.ToString() + " is the Bear!";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         roundCanvas.enabled = false;
         StartRound();
     }
@@ -181,7 +191,7 @@ public class GameManager : MonoBehaviour {
         for(int i = 0; i < fishCount.Length; ++i)
         {
             // ignore your own player
-            if(bearPlayer.PlayerNumber == i-1)
+            if(bearPlayer.PlayerNumber == i+1)
                 continue;
 
             bearPlayer.ModifyScore(round-1, fishCount[i]/2);
@@ -198,6 +208,8 @@ public class GameManager : MonoBehaviour {
         Player p = PlayerManager.instance.FindWinner();
         roundCanvas.enabled = false;
         endgameCanvas.enabled = true;
+        UICanvas.enabled = false;
+        gameEnded = true;
 
         winnerText.text = "Winner: P" + p.PlayerNumber.ToString();
     }
