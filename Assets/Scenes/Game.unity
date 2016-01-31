@@ -745,6 +745,7 @@ MonoBehaviour:
   - {fileID: 690183459}
   - {fileID: 2000463465}
   - {fileID: 707305188}
+  - {fileID: 1191289377}
   UICanvas: {fileID: 2114467903}
   roundCanvas: {fileID: 1765224883}
   roundText: {fileID: 0}
