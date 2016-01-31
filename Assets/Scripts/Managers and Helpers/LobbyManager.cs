@@ -11,6 +11,7 @@ public class LobbyManager : MonoBehaviour {
     public List<Image> frameImages = new List<Image>();
     public List<GameObject> playerCharacters = new List<GameObject>();
     public List<Image> playerImages = new List<Image>();
+    public Image startImage;
     private bool[] playersReady = new bool[] {false, false, false, false};
 
 	public AudioClip music;
@@ -68,14 +69,6 @@ public class LobbyManager : MonoBehaviour {
 
                 playersReady[i-1] = !playersReady[i-1];
             }
-            /*else if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.B) ) )
-            {
-                if( PlayerManager.instance.RemovePlayer(i) )
-                {
-                    playerImages[i-1].enabled = false;
-                    playerImages[i-1].color = Color.white;
-                }
-            }*/
             else if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(i, InputHelper.Button.X) ) )
             {
                 Player p = PlayerManager.instance.FindPlayer(i);
@@ -88,64 +81,16 @@ public class LobbyManager : MonoBehaviour {
             }
         }
 
-//        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.A) ) )
-//        {
-//            if( PlayerManager.instance.AddPlayer(1) )
-//            {
-//                playerImages[0].enabled = true;
-//
-//                Player p = PlayerManager.instance.FindPlayer(1);
-//                if( p != null )
-//                {
-//                    playerImages[0].color = p.PlayerColor;
-//                }
-//            }
-//        }
-//        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.B) ) )
-//        {
-//            if( PlayerManager.instance.AddPlayer(2) )
-//            {
-//                playerImages[1].enabled = true;
-//
-//                Player p = PlayerManager.instance.FindPlayer(2);
-//                if( p != null )
-//                {
-//                    playerImages[1].color = p.PlayerColor;
-//                }
-//            }
-//        }
-//        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.X) ) )
-//        {
-//            if( PlayerManager.instance.AddPlayer(3) )
-//            {
-//                playerImages[2].enabled = true;
-//
-//                Player p = PlayerManager.instance.FindPlayer(3);
-//                if( p != null )
-//                {
-//                    playerImages[2].color = p.PlayerColor;
-//                }
-//            }
-//        }
-//        if( Input.GetKeyDown( InputHelper.instance.GetInputButtonString(1, InputHelper.Button.Y) ) )
-//        {
-//            if( PlayerManager.instance.AddPlayer(4) )
-//            {
-//                playerImages[3].enabled = true;
-//
-//                Player p = PlayerManager.instance.FindPlayer(4);
-//                if( p != null )
-//                {
-//                    playerImages[3].color = p.PlayerColor;
-//                }
-//            }
-//        }
-
         for( int i = 0; i < playersReady.Length; ++i)
         {
             if(!playersReady[i])
+            {
+                startImage.enabled = false;
                 return;
+            }
         }
+
+        startImage.enabled = true;
 
         for(int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i)
         {

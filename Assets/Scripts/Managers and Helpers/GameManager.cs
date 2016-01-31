@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour {
     public SpriteRenderer bodySprite;
     public List<GameObject> cursors;
 
+    public List<Text> FishPlayerText;
     public List<Text> FishRemainingTexts;
+    public List<Image> RoarImages;
 
     public Canvas UICanvas;
     public Canvas roundCanvas;
@@ -72,6 +74,14 @@ public class GameManager : MonoBehaviour {
             bearTurns[i] = t;
         }
 
+        for(var i = 0; i < PlayerManager.MAX_PLAYERS; ++i)
+        {
+            Player p = PlayerManager.instance.FindPlayer(i+1);
+
+            if( p != null )
+                FishPlayerText[i].color = p.PlayerColor;
+        }
+
         PrepareNextRound();
 
 		SoundManager.instance.PlayLoopedMusic(music);
@@ -80,10 +90,10 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
     {
-        for(int i = 0; i < FishRemainingTexts.Count; ++i)
+        for(int i = 0; i < PlayerManager.MAX_PLAYERS; ++i)
         {
             if( bear.playerNumber - 1 == i)
-                FishRemainingTexts[i].text = "ROAR";
+                FishRemainingTexts[i].text = "";
             else
                 FishRemainingTexts[i].text = fishCount[i].ToString();
         }
@@ -133,22 +143,21 @@ public class GameManager : MonoBehaviour {
         UICanvas.enabled = false;
         totalFishLeft = numFishPerRound * 3;
 
-        for(int i = 0; i < cursors.Count; ++i)
-        {
-            if( bear.playerNumber - 1 == i)
-                cursors[i].SetActive(false);
-            else
-                cursors[i].SetActive(true);
-        }
-
-        for(int i = 0; i < fishCount.Length; ++i)
+        for(int i = 0; i < PlayerManager.MAX_PLAYERS; ++i)
         {
             fishCount[i] = numFishPerRound;
-        }
-
-        for(int i = 0; i < shootTime.Length; ++i)
-        {
             shootTime[i] = 0.0f;
+
+            if( bear.playerNumber - 1 == i)
+            {
+                cursors[i].SetActive(false);
+                RoarImages[i].enabled = true;
+            }
+            else
+            {
+                cursors[i].SetActive(true);
+                RoarImages[i].enabled = false;
+            }
         }
 
         timer.ResetTimer();

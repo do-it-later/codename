@@ -8,6 +8,7 @@ public class FishMovement : MonoBehaviour
     public float strafeSpeed = 10.0f;
 
     public Vector3 direction;
+    private int rotationAmount;
     private Vector3 initPosition;
 
     public int playerNumber;
@@ -36,6 +37,7 @@ public class FishMovement : MonoBehaviour
         }
 
 		this.transform.position += direction * Time.deltaTime * swimSpeed;
+        transform.Rotate(0,0,rotationAmount);
 
 		if(transform.position.z <= -88)
 		{
@@ -69,9 +71,8 @@ public class FishMovement : MonoBehaviour
     private void ResetFish()
     {
         transform.position = initPosition + new Vector3(Random.Range(-5, 5), 0, 0);
-        var newRot = transform.rotation;
-        newRot.z = Random.Range(0, 270);
-        transform.rotation = newRot;
+        transform.Rotate(0,0, Random.Range(0, 360));
+        rotationAmount = Random.Range(-10,10);
         directionSet = false;
     }
 }

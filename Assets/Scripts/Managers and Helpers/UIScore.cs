@@ -19,10 +19,11 @@ public class UIScore : MonoBehaviour {
 	void Update () {
         for(var i = 0; i < playerList.Count; ++i)
         {
-            scoreList[i].text = "P" + (i+1).ToString() + " Score:" + playerList[i].Score.ToString();
+            scoreList[i].text = "P" + (i+1).ToString() + " Score: " + playerList[i].Score.ToString();
             scoreList[i].color = playerList[i].PlayerColor;
 
             endScoreList[i].text = playerList[i].Score.ToString();
+            endScoreList[i].color = playerList[i].PlayerColor;
         }
 	}
 }
