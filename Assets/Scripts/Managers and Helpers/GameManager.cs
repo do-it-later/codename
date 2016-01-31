@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public SpriteRenderer bodySprite;
     public List<GameObject> cursors;
 
+    public List<Text> FishRemainingTexts;
+
     public Canvas UICanvas;
     public Canvas roundCanvas;
     public Text roundText;
@@ -29,9 +31,9 @@ public class GameManager : MonoBehaviour {
 
     private int[] fishCount = new int[4];
     private float[] shootTime = new float[4];
-    private bool allEmpty = false;
     public bool gameRunning = false;
     private bool gameEnded = false;
+    private int totalFishLeft = 0;
 
     private List<int> bearTurns = new List<int>();
 
@@ -78,26 +80,6 @@ public class GameManager : MonoBehaviour {
     {
         if( gameRunning || gameEnded )
         {
-            for(int i = 0; i < fishCount.Length; ++i)
-            {
-                // ignore your own player
-                if(bearPlayer.PlayerNumber == i-1)
-                    continue;
-
-                if(fishCount[i] > 0)
-                {
-                    allEmpty = false;
-                    break;
-                }
-                else
-                {
-                    allEmpty = true;
-                }
-            }
-
-            if( allEmpty )
-                EndRound();
-
             for( int i = 1; i <= PlayerManager.MAX_PLAYERS; ++i )
             {
                 //Pause
@@ -130,7 +112,6 @@ public class GameManager : MonoBehaviour {
     private void PrepareNextRound()
     {
         round++;
-        allEmpty = false;
         bearPlayer = PlayerManager.instance.FindPlayer(bearTurns[round-1]);
         bear.playerNumber = bearPlayer.PlayerNumber;
         headSprite.color = bearPlayer.PlayerColor;
@@ -138,13 +119,20 @@ public class GameManager : MonoBehaviour {
         roundCanvas.enabled = false;
         endgameCanvas.enabled = false;
         UICanvas.enabled = false;
+        totalFishLeft = numFishPerRound * 3;
+
+        for(int i = 0; i < FishRemainingTexts.Count; ++i)
+        {
+            if( bear.playerNumber - 1 == i)
+                FishRemainingTexts[i].text = "ROAR";
+            else
+                FishRemainingTexts[i].text = fishCount[i].ToString();
+        }
 
         for(int i = 0; i < cursors.Count; ++i)
         {
             if( bear.playerNumber - 1 == i)
-            {
                 cursors[i].SetActive(false);
-            }
             else
                 cursors[i].SetActive(true);
         }
@@ -239,7 +227,7 @@ public class GameManager : MonoBehaviour {
                 p.ModifyScore(round-1, -2);
             }
 
-            bearPlayer.ModifyScore(round-1, 10);
+            bearPlayer.ModifyScore(round-1, 2);
         }
     }
 
@@ -253,6 +241,12 @@ public class GameManager : MonoBehaviour {
             ObjectPool.instance.GetObject("P" + controller.ToString() + "_Fish");
             fishCount[controller-1]--;
             shootTime[controller-1] = Time.time;
+            totalFishLeft--;
+
+            if( totalFishLeft <= 0 )
+            {
+                EndRound();
+            }
         }
     }
 }

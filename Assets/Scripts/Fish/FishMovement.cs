@@ -70,7 +70,7 @@ public class FishMovement : MonoBehaviour
     {
         transform.position = initPosition + new Vector3(Random.Range(-5, 5), 0, 0);
         var newRot = transform.rotation;
-        newRot.z = Random.Range(0, 360);
+        newRot.z = Random.Range(0, 270);
         transform.rotation = newRot;
         directionSet = false;
     }
