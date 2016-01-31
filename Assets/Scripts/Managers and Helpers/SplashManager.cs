@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class SplashManager : MonoBehaviour
 {
+	public AudioClip music;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -16,7 +18,8 @@ public class SplashManager : MonoBehaviour
 	}
 
 	private IEnumerator roundStartCoroutine()
-	{
+	{	
+		SoundManager.instance.PlaySingleMusic(music);
 		yield return new WaitForSeconds(5);
 		SceneManager.LoadScene("Menu");
 	}

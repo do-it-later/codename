@@ -748,7 +748,6 @@ MonoBehaviour:
   - {fileID: 1191289377}
   UICanvas: {fileID: 2114467903}
   roundCanvas: {fileID: 1765224883}
-  roundText: {fileID: 0}
   bearText: {fileID: 1950952320}
   endgameCanvas: {fileID: 1928858812}
   winnerText: {fileID: 1073234775}
@@ -756,10 +755,21 @@ MonoBehaviour:
   bear: {fileID: 996419316}
   gameRunning: 0
   music: {fileID: 8300000, guid: 39ad5d99d6dab474ab89008026ae84bb, type: 3}
-  chompList:
+  chompAudio:
   - {fileID: 8300000, guid: f2629938d6f144d8e9aef340a339f407, type: 3}
   - {fileID: 8300000, guid: fd9df00fb0d37486faf01caa715fabf5, type: 3}
   - {fileID: 8300000, guid: ac24df81408cb491a8b2e39cf0ee5452, type: 3}
+  gameoverAudio: {fileID: 8300000, guid: 9557a4b6642df4c8b871e8f38d553454, type: 3}
+  playerWinsAudio:
+  - {fileID: 8300000, guid: ffef7a8cd650a46f3bdae016cbc31119, type: 3}
+  - {fileID: 8300000, guid: ccaa6908247a14f218729c80ef80abec, type: 3}
+  - {fileID: 8300000, guid: 517279aa4c09f4cb08256656cce4e41e, type: 3}
+  - {fileID: 8300000, guid: a91a64cf2fb5e43ea906c7c8fd090ade, type: 3}
+  roundNumberAudio:
+  - {fileID: 8300000, guid: 12962f597ecbe45c7b66caaeae401b10, type: 3}
+  - {fileID: 8300000, guid: 557f24eb0cf3f48f6939e9e4abb1a89c, type: 3}
+  - {fileID: 8300000, guid: 920ead53bb65a4d3b8b81ac9349dcd2e, type: 3}
+  - {fileID: 8300000, guid: 1a6270c49566b475e89e94206c8b1606, type: 3}
 --- !u!4 &404233294
 Transform:
   m_ObjectHideFlags: 0

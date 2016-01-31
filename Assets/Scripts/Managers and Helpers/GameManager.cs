@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour {
 
     public Canvas UICanvas;
     public Canvas roundCanvas;
-    public Text roundText;
     public Text bearText;
 
     public Canvas endgameCanvas;
@@ -38,7 +37,10 @@ public class GameManager : MonoBehaviour {
     private List<int> bearTurns = new List<int>();
 
 	public AudioClip music;
-	public List<AudioClip> chompList;
+	public List<AudioClip> chompAudio;
+	public AudioClip gameoverAudio;
+	public List<AudioClip> playerWinsAudio;
+	public List<AudioClip> roundNumberAudio;
 
     void Awake()
     {
@@ -119,6 +121,8 @@ public class GameManager : MonoBehaviour {
 
     private void PrepareNextRound()
     {
+		SoundManager.instance.PlaySingleSfx(roundNumberAudio[round]);
+
         round++;
         bearPlayer = PlayerManager.instance.FindPlayer(bearTurns[round-1]);
         bear.playerNumber = bearPlayer.PlayerNumber;
@@ -156,7 +160,6 @@ public class GameManager : MonoBehaviour {
     {
         //TODO: Display banner with round
         roundCanvas.enabled = true;
-        roundText.text = "Round " + round;
         bearText.text = "Player " + bearPlayer.PlayerNumber.ToString() + " is the Bear!";
         yield return new WaitForSeconds(4);
         roundCanvas.enabled = false;
@@ -186,18 +189,23 @@ public class GameManager : MonoBehaviour {
         }
 
         if( round >= PlayerManager.MAX_PLAYERS )
-            EndGame();
+			StartCoroutine(EndGame());
         else
             PrepareNextRound();
     }
 
-    private void EndGame()
+	private IEnumerator EndGame()
     {
+		SoundManager.instance.PlaySingleSfx(gameoverAudio);
+		yield return new WaitForSeconds(2);
+
         Player p = PlayerManager.instance.FindWinner();
         roundCanvas.enabled = false;
         endgameCanvas.enabled = true;
         UICanvas.enabled = false;
         gameEnded = true;
+
+		SoundManager.instance.PlaySingleSfx(playerWinsAudio[p.PlayerNumber - 1]);
 
         winnerText.text = "Winner: P" + p.PlayerNumber.ToString();
     }
@@ -218,7 +226,7 @@ public class GameManager : MonoBehaviour {
     {
         if( gameRunning )
         {
-			SoundManager.instance.PlaySingleSfx(chompList[Random.Range(0, chompList.Count)]);
+			SoundManager.instance.PlaySingleSfx(chompAudio[Random.Range(0, chompAudio.Count)]);
 
             // Player who gets caught loses points
             var p = PlayerManager.instance.FindPlayer(controller);

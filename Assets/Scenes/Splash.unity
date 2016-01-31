@@ -85,6 +85,48 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &538965258
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471532, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f3c0f7f2396db4ad5951353bb613c2b0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &719157990
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5844276f86e2944de9737a3cc7169ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 099081ec5dfc44fec9ac1c22398ee24d, type: 3}
 --- !u!1 &1821175412
 GameObject:
   m_ObjectHideFlags: 0
