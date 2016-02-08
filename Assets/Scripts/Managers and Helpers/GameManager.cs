@@ -196,6 +196,11 @@ public class GameManager : MonoBehaviour {
     {
         gameRunning = false;
 
+        ObjectPool.instance.ResetPool("P1_Fish");
+        ObjectPool.instance.ResetPool("P2_Fish");
+        ObjectPool.instance.ResetPool("P3_Fish");
+        ObjectPool.instance.ResetPool("P4_Fish");
+
         timer.StopTimer();
 
         for(int i = 0; i < fishCount.Length; ++i)
@@ -204,7 +209,7 @@ public class GameManager : MonoBehaviour {
             if(bearPlayer.PlayerNumber == i+1)
                 continue;
 
-            bearPlayer.ModifyScore(round-1, fishCount[i]/2);
+            bearPlayer.ModifyScore(fishCount[i]/2);
         }
 
         if( round >= PlayerManager.MAX_PLAYERS )
@@ -234,7 +239,7 @@ public class GameManager : MonoBehaviour {
             var p = PlayerManager.instance.FindPlayer(controller);
             if( p != null )
             {
-                p.ModifyScore(round-1, 1);
+                p.ModifyScore(1);
             }
         }
     }
@@ -249,10 +254,10 @@ public class GameManager : MonoBehaviour {
             var p = PlayerManager.instance.FindPlayer(controller);
             if( p != null )
             {
-                p.ModifyScore(round-1, -2);
+                p.ModifyScore(-2);
             }
 
-            bearPlayer.ModifyScore(round-1, 5);
+            bearPlayer.ModifyScore(5);
         }
     }
 

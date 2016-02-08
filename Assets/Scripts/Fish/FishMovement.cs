@@ -12,15 +12,21 @@ public class FishMovement : MonoBehaviour
     private Vector3 initPosition;
 
     public int playerNumber;
+    private bool initialPositionSet = false;
 
     //
     private GameObject fishPointer;
     private bool directionSet = false;
 
+    void OnDisable()
+    {
+        ResetFish();
+    }
 
     void Start()
     {
         initPosition = gameObject.transform.position;
+        initialPositionSet = true;
 
         ResetFish();
 
@@ -29,7 +35,7 @@ public class FishMovement : MonoBehaviour
 
     void Update()
     {
-        if( !directionSet )
+        if( !directionSet && fishPointer != null )
         {
             direction = fishPointer.transform.position - transform.position;
             direction.Normalize();
@@ -70,9 +76,12 @@ public class FishMovement : MonoBehaviour
 
     private void ResetFish()
     {
-        transform.position = initPosition + new Vector3(Random.Range(-5, 5), 0, 0);
-        transform.Rotate(0,0, Random.Range(0, 360));
-        rotationAmount = Random.Range(-10,10);
-        directionSet = false;
+        if( initialPositionSet )
+        {
+            transform.position = initPosition + new Vector3(Random.Range(-5, 5), 0, 0);
+            transform.Rotate(0,0, Random.Range(0, 360));
+            rotationAmount = Random.Range(-10,10);
+            directionSet = false;
+        }
     }
 }

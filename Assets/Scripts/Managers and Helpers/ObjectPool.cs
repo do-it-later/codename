@@ -17,7 +17,6 @@ public class ObjectPool : MonoBehaviour
         if( instance == null )
         {
             instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
@@ -80,5 +79,25 @@ public class ObjectPool : MonoBehaviour
     {
         obj.transform.SetParent(this.transform);
         obj.SetActive(false);
+    }
+
+    public void ResetPool(string objectName)
+    {
+        for(int i = 0; i < baseObjects.Count; i++)
+        {
+            if(baseObjects[i].name == objectName)
+            {
+                for(int j = 0; j < pooledObjects[i].Count; j++)
+                {
+                    if(pooledObjects[i][j].activeInHierarchy)
+                    {
+                        pooledObjects[i][j].transform.SetParent(this.transform);
+                        pooledObjects[i][j].SetActive(false);
+                    }
+                }
+
+                break;
+            }
+        }
     }
 }

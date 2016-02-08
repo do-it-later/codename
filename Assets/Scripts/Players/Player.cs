@@ -29,7 +29,7 @@ public class Player {
         playerColor = color;
     }
 
-    public void ModifyScore(int round, int val)
+    public void ModifyScore(int val)
     {
         score += val;
     }

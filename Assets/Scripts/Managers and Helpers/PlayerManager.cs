@@ -148,4 +148,12 @@ public class PlayerManager : MonoBehaviour {
 
         return winner;
     }
+
+    public void ResetPlayers()
+    {
+        foreach( var p in playerList )
+        {
+            p.ModifyScore( p.Score * -1 );
+        }
+    }
 }
